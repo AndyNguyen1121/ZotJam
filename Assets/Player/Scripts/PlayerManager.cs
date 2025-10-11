@@ -17,11 +17,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [Header("Attributes")]
     public WeaponBehavior weaponBehavior;
-    public float damage;
-    public float fireRate;
-    public float range;
+    public float damageMultiplier = 1f;
+    public float fireRateMultiplier = 1f;
+    public float rangeMultiplier = 1f;
     public float jumpHeight;
     public float maxMovementSpeed;
+
+    private float damage;
+    private float fireRate;
+    private float range;
     
     [Header("Health")]
     public float Health { get; set; }
@@ -77,11 +81,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         GroundCheck();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             EquipWeapon(testWeapon);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
             EquipWeapon(testWeapon2);
         }

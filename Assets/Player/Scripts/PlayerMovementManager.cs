@@ -104,8 +104,8 @@ public class PlayerMovementManager : MonoBehaviour
 
         Vector2 input = PlayerInputManager.instance.cameraInput;
 
-        yaw += input.x * 5 * Time.deltaTime;
-        pitch -= input.y * 5 * Time.deltaTime;
+        yaw += input.x * 10 * Time.deltaTime;
+        pitch -= input.y * 10 * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         transform.rotation = Quaternion.Euler(0, yaw, 0f);

@@ -1,12 +1,13 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerCombatManager : MonoBehaviour
 {
     private bool isFiring;
     private float nextFireTime;
-    public GameObject bulletTrail;
+    public TrailRenderer bulletTrail;
     private void Update()
     {
         if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Auto && isFiring)
@@ -54,10 +55,20 @@ public class PlayerCombatManager : MonoBehaviour
             endPos = startPos + PlayerManager.instance.mainCam.transform.forward * PlayerManager.instance.range;
         }
 
-        StartCoroutine(SpawnTrail(startPos, endPos));
+        //StartCoroutine(SpawnTrail(startPos, endPos));
+
+        
+        TrailRenderer trailRenderer = Instantiate(bulletTrail, startPos, Quaternion.identity);
+
+        if (trailRenderer != null)
+        {
+            trailRenderer.AddPosition(startPos);
+            trailRenderer.transform.position = endPos;
+            Destroy(trailRenderer.gameObject, 0.1f);
+        }
     }
 
-    private IEnumerator SpawnTrail(Vector3 start, Vector3 end)
+    /*private IEnumerator SpawnTrail(Vector3 start, Vector3 end)
     {
         GameObject trail = Instantiate(bulletTrail, start, Quaternion.identity);
         TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
@@ -80,7 +91,7 @@ public class PlayerCombatManager : MonoBehaviour
 
         Destroy(trail);
     }
-
+*/
     private void OnDrawGizmos()
     {
         if (PlayerManager.instance != null)

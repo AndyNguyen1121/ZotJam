@@ -4,11 +4,13 @@ public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance;
     public PlayerControls playerControls;
+    public PlayerMovementManager playerMovementManager;
     private Camera mainCamera;
 
     [Header("Input")]
     public Vector2 movementInput;
     public Vector2 cameraInput;
+    
 
     private void Awake()
     {
@@ -20,7 +22,10 @@ public class PlayerInputManager : MonoBehaviour
         {
             Debug.Log("More than one input manager in scene");
         }
+
+        playerMovementManager = GetComponent<PlayerMovementManager>();
     }
+
 
     private void Start()
     {
@@ -32,7 +37,7 @@ public class PlayerInputManager : MonoBehaviour
         Vector3 direction = mainCamera.transform.right * movementInput.x;
         direction += mainCamera.transform.forward * movementInput.y;
 
-        return direction.normalized;
+        return direction;
     }
 
     private void OnEnable()
@@ -43,6 +48,9 @@ public class PlayerInputManager : MonoBehaviour
         // Bind input actions
         playerControls.Action.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
         playerControls.Action.Camera.performed += ctx => cameraInput = ctx.ReadValue<Vector2>();
+        playerControls.Action.Jump.performed += ctx => playerMovementManager.AttemptToJump();
+        playerControls.Action.Shoot.started += PlayerManager.instance.playerCombatManager.OnFireStarted;
+        playerControls.Action.Shoot.canceled += PlayerManager.instance.playerCombatManager.OnFireCanceled;
 
         playerControls.Enable();
     }

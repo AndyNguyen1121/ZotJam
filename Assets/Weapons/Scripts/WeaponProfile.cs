@@ -2,7 +2,6 @@ using UnityEngine;
 
 public enum WeaponBehavior
 {
-    Spread,
     Auto,
     Single
 }
@@ -14,5 +13,6 @@ public class WeaponProfile : ScriptableObject
     public float damage;
     public float fireRate;
     public float range;
+    public bool spread;
     
 }

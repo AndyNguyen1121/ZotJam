@@ -50,6 +50,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public float damage;
     public float fireRate;
     public float range;
+    public bool canSpread;
 
     // Do not modify outside of equipping weapon
     [HideInInspector] public float baseDamage;

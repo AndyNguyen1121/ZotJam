@@ -7,7 +7,7 @@ public class ProjectileManager : MonoBehaviour
     public Rigidbody rb;
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + (transform.forward * speed));
+        rb.MovePosition(transform.position + (transform.forward * speed * Time.fixedDeltaTime));
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Sprite icon;
+    public string name;
+    public string description;
+    public virtual void Activate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log(name + " has been activated");
     }
 }

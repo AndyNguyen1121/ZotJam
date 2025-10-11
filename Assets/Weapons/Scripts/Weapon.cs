@@ -12,9 +12,15 @@ public class Weapon : MonoBehaviour
             Debug.Log("No weapon profile detected");
         }
 
+        // set base attributes
         PlayerManager.instance.weaponBehavior = weaponProfile.weaponBehavior;
-        PlayerManager.instance.damage = weaponProfile.damage; 
-        PlayerManager.instance.fireRate = weaponProfile.fireRate;
-        PlayerManager.instance.range = weaponProfile.range;
+        PlayerManager.instance.baseDamage = weaponProfile.damage; 
+        PlayerManager.instance.baseFireRate = weaponProfile.fireRate;
+        PlayerManager.instance.baseRange = weaponProfile.range;
+
+        // adjust actual stats
+        PlayerManager.instance.damage = weaponProfile.damage * PlayerManager.instance.damageMultiplier;
+        PlayerManager.instance.fireRate = weaponProfile.fireRate * PlayerManager.instance.fireRateMultiplier;
+        PlayerManager.instance.range = weaponProfile.range * PlayerManager.instance.rangeMultiplier;
     }
 }

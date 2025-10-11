@@ -6,27 +6,58 @@ public class PlayerManager : MonoBehaviour, IDamageable
 {
     public static PlayerManager instance;
 
-    [HideInInspector]
-    public CharacterController characterController;
+    [HideInInspector] public CharacterController characterController;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
+    [HideInInspector] public Camera mainCam;
 
-    [HideInInspector]
-    public PlayerCombatManager playerCombatManager;
-
-    [HideInInspector]
-    public Camera mainCam;
+    // Private variables
+    [SerializeField] private float _damageMultipler = 1f;
+    [SerializeField] private float _fireRateMultiplier = 1f;
+    [SerializeField] private float _rangeMultiplier = 1f;
 
     [Header("Attributes")]
     public WeaponBehavior weaponBehavior;
-    public float damageMultiplier = 1f;
-    public float fireRateMultiplier = 1f;
-    public float rangeMultiplier = 1f;
+
+    public float damageMultiplier
+    {
+        get => _damageMultipler;
+        set
+        {
+            damage = baseDamage * value;
+        }
+    }
+    public float fireRateMultiplier
+    {
+        get => _fireRateMultiplier;
+        set
+        {
+            fireRate = baseFireRate * value;
+        }
+    }
+    public float rangeMultiplier
+    {
+        get => _rangeMultiplier;
+        set
+        {
+            range = baseRange * value;
+        }
+    }
+
     public float jumpHeight;
     public float maxMovementSpeed;
 
-    private float damage;
-    private float fireRate;
-    private float range;
     
+    public float damage;
+    public float fireRate;
+    public float range;
+
+    // Do not modify outside of equipping weapon
+    [HideInInspector] public float baseDamage;
+    [HideInInspector] public float baseFireRate;
+    [HideInInspector] public float baseRange;
+
+    
+
     [Header("Health")]
     public float Health { get; set; }
     [field: SerializeField]

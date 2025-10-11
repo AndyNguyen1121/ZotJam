@@ -49,6 +49,8 @@ public class PlayerInputManager : MonoBehaviour
         playerControls.Action.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
         playerControls.Action.Camera.performed += ctx => cameraInput = ctx.ReadValue<Vector2>();
         playerControls.Action.Jump.performed += ctx => playerMovementManager.AttemptToJump();
+        playerControls.Action.Shoot.started += PlayerManager.instance.playerCombatManager.OnFireStarted;
+        playerControls.Action.Shoot.canceled += PlayerManager.instance.playerCombatManager.OnFireCanceled;
 
         playerControls.Enable();
     }

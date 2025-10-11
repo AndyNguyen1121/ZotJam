@@ -13,11 +13,9 @@ public class PlayerMovementManager : MonoBehaviour
     float yaw;
 
     [Header("Movement")]
-    public float maxMovementSpeed = 5f;
     public float gravity = -9;
     private Vector3 verticalVelocity;
 
-    public float jumpHeight = 2f;
     public float jumpCooldown = 0.2f;
     private float timeElapsedSinceLastJump;
     private float timeOnGround;
@@ -66,8 +64,8 @@ public class PlayerMovementManager : MonoBehaviour
         
         if (PlayerInputManager.instance.movementInput != Vector2.zero)
         {
-            if (currentSpeed < maxMovementSpeed)
-                currentSpeed = Mathf.Lerp(currentSpeed, maxMovementSpeed, acceleration * Time.deltaTime);
+            if (currentSpeed < PlayerManager.instance.maxMovementSpeed)
+                currentSpeed = Mathf.Lerp(currentSpeed, PlayerManager.instance.maxMovementSpeed, acceleration * Time.deltaTime);
 
             lastMoveVelocity = movementDir;
         }
@@ -77,7 +75,7 @@ public class PlayerMovementManager : MonoBehaviour
             movementDir = lastMoveVelocity;
         }
 
-        float t = Mathf.Clamp01(currentSpeed / maxMovementSpeed);
+        float t = Mathf.Clamp01(currentSpeed / PlayerManager.instance.maxMovementSpeed);
         float targetFOV = Mathf.Lerp(minFOV, maxFOV, t);
         PlayerManager.instance.virtualCamera.Lens.FieldOfView = Mathf.Lerp(PlayerManager.instance.virtualCamera.Lens.FieldOfView, targetFOV, acceleration * Time.deltaTime);
         Vector3 movementAmount = movementDir * currentSpeed;
@@ -106,8 +104,8 @@ public class PlayerMovementManager : MonoBehaviour
 
         Vector2 input = PlayerInputManager.instance.cameraInput;
 
-        yaw += input.x;
-        pitch -= input.y;
+        yaw += input.x * 5 * Time.deltaTime;
+        pitch -= input.y * 5 * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         transform.rotation = Quaternion.Euler(0, yaw, 0f);
@@ -118,12 +116,12 @@ public class PlayerMovementManager : MonoBehaviour
     {
         if ((PlayerManager.instance.isGrounded && timeElapsedSinceLastJump > jumpCooldown))
         {
-            verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            verticalVelocity.y = Mathf.Sqrt(PlayerManager.instance.jumpHeight * -2.0f * gravity);
             timeOnGround = 0;
         }
         else if (!PlayerManager.instance.isGrounded && doubleJumpEnabled && canDoubleJump && timeElapsedSinceLastJump > jumpCooldown)
         {
-            verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            verticalVelocity.y = Mathf.Sqrt(PlayerManager.instance.jumpHeight * -2.0f * gravity);
             timeOnGround = 0;
             canDoubleJump = false;
         }

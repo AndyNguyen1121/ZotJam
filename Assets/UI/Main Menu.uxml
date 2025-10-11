@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; align-self: center; flex-direction: column-reverse; text-overflow: clip;" />
+    <ui:TextField label="Game Name" enabled="true" hide-placeholder-on-focus="true" style="visibility: visible; flex-direction: column-reverse; justify-content: flex-start; align-items: center; align-self: auto; align-content: auto; -unity-font-style: bold; -unity-text-align: upper-center; -unity-text-outline-width: 0; background-color: rgb(101, 0, 20); color: rgb(255, 0, 0); height: 30px; width: 350px;" />
+    <ui:Button text="Button" style="height: 22px;" />
+</ui:UXML>

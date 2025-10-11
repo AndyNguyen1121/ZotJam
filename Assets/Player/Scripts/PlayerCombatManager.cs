@@ -8,6 +8,10 @@ public class PlayerCombatManager : MonoBehaviour
     private bool isFiring;
     private float nextFireTime;
     public TrailRenderer bulletTrail;
+
+    [SerializeField]
+    private Vector3 bulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
+
     private void Update()
     {
         if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Auto && isFiring)
@@ -41,8 +45,10 @@ public class PlayerCombatManager : MonoBehaviour
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
 
+        Vector3 dir = GetDirection();
+
         if (Physics.Raycast(PlayerManager.instance.mainCam.transform.position,
-            PlayerManager.instance.mainCam.transform.forward,
+            dir,
             out hit,
             PlayerManager.instance.range,
             PlayerManager.instance.whatIsDamageable))
@@ -52,12 +58,9 @@ public class PlayerCombatManager : MonoBehaviour
         }
         else
         {
-            endPos = startPos + PlayerManager.instance.mainCam.transform.forward * PlayerManager.instance.range;
+            endPos = startPos + dir * PlayerManager.instance.range;
         }
 
-        //StartCoroutine(SpawnTrail(startPos, endPos));
-
-        
         TrailRenderer trailRenderer = Instantiate(bulletTrail, startPos, Quaternion.identity);
 
         if (trailRenderer != null)
@@ -68,30 +71,24 @@ public class PlayerCombatManager : MonoBehaviour
         }
     }
 
-    /*private IEnumerator SpawnTrail(Vector3 start, Vector3 end)
+    private Vector3 GetDirection()
     {
-        GameObject trail = Instantiate(bulletTrail, start, Quaternion.identity);
-        TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
+        Vector3 direction = PlayerManager.instance.mainCam.transform.forward;
 
-        float time = 0f;
-        float duration = 0.05f; // how long the bullet takes to reach the target
-
-        while (time < 1f)
+        if (PlayerManager.instance.canSpread)
         {
-            time += Time.deltaTime / duration;
-            if (trail != null)
-            {
-                trail.transform.position = Vector3.Lerp(start, end, time);
-            }
-            yield return null;
+            direction += new Vector3(
+                Random.Range(-bulletSpreadVariance.x, bulletSpreadVariance.x),
+                Random.Range(-bulletSpreadVariance.y, bulletSpreadVariance.y),
+                Random.Range(-bulletSpreadVariance.z, bulletSpreadVariance.z)
+            );
+
+            direction.Normalize();
         }
 
-        if (trailRenderer != null)
-            yield return new WaitForSeconds(trailRenderer.time);
-
-        Destroy(trail);
+        return direction;
     }
-*/
+
     private void OnDrawGizmos()
     {
         if (PlayerManager.instance != null)

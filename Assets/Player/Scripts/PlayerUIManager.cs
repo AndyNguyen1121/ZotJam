@@ -16,6 +16,9 @@ public class PlayerUIManager : MonoBehaviour
     public Slider trailingHealthSlider;
     public Transform healthCanvasGroup;
 
+    [Header("Death Menu")]
+    public GameObject deathMenu;
+
     private DG.Tweening.Sequence sliderUpdateSequence;
     private Tween sliderShake;
     // Start is called before the first frame update
@@ -55,6 +58,15 @@ public class PlayerUIManager : MonoBehaviour
             .Append(healthSlider.DOValue(health / maxHealth, 0.1f))
             .AppendInterval(0.5f)
             .Append(trailingHealthSlider.DOValue(health / maxHealth, 0.1f));
+    }
+
+    public void EnableDeathMenu()
+    {
+        deathMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0f;
     }
 
 }

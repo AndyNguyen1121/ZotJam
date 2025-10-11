@@ -139,6 +139,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (Health == 0 && !deathSequenceStarted)
         {
             OnDeath.Invoke();
+            playerUIManager.EnableDeathMenu();
             deathSequenceStarted = true;
         }
 

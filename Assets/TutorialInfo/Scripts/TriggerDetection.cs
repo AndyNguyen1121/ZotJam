@@ -16,6 +16,8 @@ public class TriggerDetection : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger entered by " + other.gameObject.name);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         powerChooser = Random.Range(1, 4);
         Debug.Log(powerChooser);

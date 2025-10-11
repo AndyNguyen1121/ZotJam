@@ -1,8 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class TriggerDetection : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int powerChooser;
+    public string final;
+    public Object GUI;
+    [SerializeField] TextMeshProUGUI collectionPopUp;
+    [SerializeField] GameObject power;
 
     private void Start()
     {
@@ -11,7 +17,7 @@ public class TriggerDetection : MonoBehaviour
     {
         Debug.Log("Trigger entered by " + other.gameObject.name);
 
-        int powerChooser = Random.Range(1, 4);
+        powerChooser = Random.Range(1, 4);
         Debug.Log(powerChooser);
 
         string healthPassive = "health passive buff";
@@ -21,16 +27,20 @@ public class TriggerDetection : MonoBehaviour
         if (powerChooser == 1)
         {
             Debug.Log(healthPassive);
+            final = healthPassive;
         }
         else if (powerChooser == 2)
         {
             Debug.Log(damagePassive);
+            final = damagePassive;
         }
         else
         {
             Debug.Log(speedPassive);
+            final = speedPassive;
         }
-
+        collectionPopUp.text = final;
+        power.SetActive(true);
     }
 
     // Update is called once per frame

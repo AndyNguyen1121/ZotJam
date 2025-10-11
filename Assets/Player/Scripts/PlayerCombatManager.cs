@@ -54,7 +54,12 @@ public class PlayerCombatManager : MonoBehaviour
             PlayerManager.instance.whatIsDamageable))
         {
             endPos = hit.point;
-            Destroy(hit.collider.gameObject);
+
+            IDamageable damageScript = hit.collider.gameObject.GetComponent<IDamageable>();
+            if (damageScript != null)
+            {
+                damageScript.TakeDamage(PlayerManager.instance.damage);
+            }
         }
         else
         {

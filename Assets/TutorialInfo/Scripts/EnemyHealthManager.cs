@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,5 +37,4 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     {
         Health = Mathf.Min(MaxHealth, Health + value);
     }
-
 }

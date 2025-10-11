@@ -1,6 +1,9 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
@@ -87,6 +90,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public GameObject testWeapon;
     public GameObject testWeapon2;
 
+    [Header("Vignette")]
+    [SerializeField] private Volume _volume;
+    private Vignette _vignette;
+    private Coroutine vignetteFlash;
+    private float _vignetteFlashDuration = 0.35f;
+
     private bool deathSequenceStarted;
 
     private void Awake()
@@ -107,7 +116,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         mainCam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        _volume.profile.TryGet(out _vignette);
         EquipWeapon(testWeapon);
     }
 
@@ -145,6 +154,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         playerUIManager.UpdateHealthSliders(Health, MaxHealth);
         screenShake.GenerateImpulseAt(transform.position, new Vector3(2, 2, 2));
+
+        if (vignetteFlash != null)
+        {
+            StopCoroutine(vignetteFlash);
+        }
+
+        vignetteFlash = StartCoroutine(DamageVignette());
     }
 
     public void SetHealthValue(float value)
@@ -173,6 +189,32 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             Debug.Log("Weapon script is not detected.");
         }
+    }
+
+    private IEnumerator DamageVignette()
+    {
+        float elapsedTime = 0;
+        _vignette.color.value = Color.black;
+
+        while (elapsedTime < (_vignetteFlashDuration / 2))
+        {
+            _vignette.color.value = Color.Lerp(Color.black, Color.red, elapsedTime / (_vignetteFlashDuration / 2));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+
+        }
+
+        elapsedTime = 0;
+
+        while (elapsedTime < (_vignetteFlashDuration / 2))
+        {
+            _vignette.color.value = Color.Lerp(Color.red, Color.black, elapsedTime / (_vignetteFlashDuration / 2));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+
+        }
+
+        _vignette.color.value = Color.black;
     }
 
     private void OnDrawGizmos()

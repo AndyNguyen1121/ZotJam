@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 7500030403069150895}
   - component: {fileID: 5275862400619825420}
   - component: {fileID: 5994648283983021165}
-  m_Layer: 0
+  - component: {fileID: 174725349369295541}
+  m_Layer: 6
   m_Name: defaultEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,3 +152,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   detectRadius: 100
   repathInterval: 2
+--- !u!114 &174725349369295541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791504159427037280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30501e1e28c63ca40aaae71d8e686bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  <MaxHealth>k__BackingField: 100
+  deathSequenceStarted: 0

@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
+    [HideInInspector] public PlayerUIManager playerUIManager;
     [HideInInspector] public Camera mainCam;
 
     // Private variables
@@ -64,7 +65,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [field: SerializeField]
     public float MaxHealth { get; set; }
     public UnityEvent OnDeath { get; set; } = new UnityEvent();
-    private UnityEvent OnHealthChanged = new UnityEvent();
 
 
     [Header("Ground Check")]
@@ -81,6 +81,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public GameObject currentWeapon;
     public GameObject currentGunTip;
     public LayerMask whatIsDamageable;
+    public CinemachineImpulseSource screenShake;
 
     [Header("Weapon Types")]
     public GameObject testWeapon;
@@ -97,6 +98,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         characterController = GetComponent<CharacterController>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerUIManager = GetComponent<PlayerUIManager>();
         Health = MaxHealth;
     }
 
@@ -120,6 +122,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         else if (Input.GetKeyDown(KeyCode.K))
         {
             EquipWeapon(testWeapon2);
+            TakeDamage(10);
         }
 
     }
@@ -139,19 +142,20 @@ public class PlayerManager : MonoBehaviour, IDamageable
             deathSequenceStarted = true;
         }
 
-        OnHealthChanged.Invoke();
+        playerUIManager.UpdateHealthSliders(Health, MaxHealth);
+        screenShake.GenerateImpulseAt(transform.position, new Vector3(2, 2, 2));
     }
 
     public void SetHealthValue(float value)
     {
         Health = value;
-        OnHealthChanged.Invoke();
+        playerUIManager.UpdateHealthSliders(Health, MaxHealth);
     }
 
     public void Heal(float value)
     {
         Health = Mathf.Min(MaxHealth, Health + value);
-        OnHealthChanged.Invoke();
+        playerUIManager.UpdateHealthSliders(Health, MaxHealth);
     }
 
     public void EquipWeapon(GameObject weaponObject)

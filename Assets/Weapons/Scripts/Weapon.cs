@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
         PlayerManager.instance.baseDamage = weaponProfile.damage; 
         PlayerManager.instance.baseFireRate = weaponProfile.fireRate;
         PlayerManager.instance.baseRange = weaponProfile.range;
+        PlayerManager.instance.canSpread = weaponProfile.spread;
 
         // adjust actual stats
         PlayerManager.instance.damage = weaponProfile.damage * PlayerManager.instance.damageMultiplier;

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22108bb52cc816641842af25c46605e9, type: 3}
   m_Name: TestProfile2
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
-  weaponBehavior: 2
+  weaponBehavior: 1
   damage: 1
   fireRate: 1
   range: 9
+  spread: 0

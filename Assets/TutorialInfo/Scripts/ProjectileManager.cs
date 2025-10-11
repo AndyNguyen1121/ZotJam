@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float damage = 7f;
+    public float speed = 3f;
+    public Rigidbody rb;
+    private void FixedUpdate()
     {
-        
+        rb.MovePosition(transform.position + (transform.forward * speed));
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            IDamageable damageScript = other.GetComponent<IDamageable>();
+            if (damageScript != null)
+            {
+                damageScript.TakeDamage(damage);
+            }
+        }
     }
 }

@@ -1,0 +1,40 @@
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+public class ItemSelect : MonoBehaviour
+{
+    Item[] choices = new Item[2];
+    public Item[] possibleItems;
+
+    public Transform[] choice_buttons;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+
+    }
+    void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+
+        // Yes I know this is terribly programmed
+        choices[0] = possibleItems[Random.Range(0, possibleItems.Length)];
+        choices[1] = possibleItems[Random.Range(0, possibleItems.Length)];
+        choice_buttons[0].GetChild(0).GetComponent<Image>().sprite = choices[0].icon;
+        choice_buttons[0].GetChild(1).GetComponent<TMP_Text>().text = choices[0].name;
+        choice_buttons[0].GetChild(2).GetComponent<TMP_Text>().text = choices[0].description;
+
+        choice_buttons[1].GetChild(0).GetComponent<Image>().sprite = choices[1].icon;
+        choice_buttons[1].GetChild(1).GetComponent<TMP_Text>().text = choices[1].name;
+        choice_buttons[1].GetChild(2).GetComponent<TMP_Text>().text = choices[1].description;
+    }
+
+
+    public void ChooseItem(int n)
+    {
+        ItemManager.instance.AddItem(choices[n].gameObject);
+        Cursor.lockState = CursorLockMode.Locked;
+        gameObject.active = false;
+    }
+   
+}

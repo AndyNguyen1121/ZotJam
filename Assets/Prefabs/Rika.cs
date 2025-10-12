@@ -33,6 +33,10 @@ public class Rika : MonoBehaviour
     
     public void Attack()
     {
-        PlayerManager.instance.TakeDamage(damage);
+        if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= agent.stoppingDistance)
+        {
+            PlayerManager.instance.TakeDamage(damage);
+        }
+      
     }
 }

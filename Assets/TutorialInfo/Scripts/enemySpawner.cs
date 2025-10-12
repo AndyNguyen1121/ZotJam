@@ -221,7 +221,7 @@ public class enemySpawner : MonoBehaviour
         }
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPos, out hit, 2f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPos, out hit, 4f, NavMesh.AllAreas))
         {
             randomPos = hit.position;
         }

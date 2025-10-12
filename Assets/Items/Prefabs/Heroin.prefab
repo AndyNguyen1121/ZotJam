@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8774730421023406672}
-  - component: {fileID: 1272413121800323917}
+  - component: {fileID: 1021709706671551807}
   m_Layer: 0
   m_Name: Heroin
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1272413121800323917
+--- !u!114 &1021709706671551807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6008466383041232042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2bb670c991242dc8d300916640de1d, type: 3}
+  m_Script: {fileID: 11500000, guid: ee77e6a5bc3244722829021752d71f6d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WSpeed
+  m_EditorClassIdentifier: Assembly-CSharp::Heroin
   icon: {fileID: 21300000, guid: 1a132c64f54824ab2b751db01279add3, type: 3}
   name: Unmarked Syringe
-  description: Inreases attack speed by 5%
+  description: Increase Attack Speed by 20%

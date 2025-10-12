@@ -76,18 +76,18 @@ public class PlayerCombatManager : MonoBehaviour
             if (damageScript != null)
             {
                 damageScript.TakeDamage(PlayerManager.instance.damage);
+                if(Random.Range (0,101) < PlayerManager.instance.fireChance)
+                {
+                    damageScript.Ignite();
+                }
             }
 
-            if (Random.Range(0, 101) < PlayerManager.instance.fireChance)
-            {
-
-            }
-
+          
             if (Random.Range(0, 101) < PlayerManager.instance.explosionChance)
             {
                 Collider[] enemyExplosion = Physics.OverlapSphere(hit.point, explosionRadius, PlayerManager.instance.whatIsDamageable);
                 Instantiate(explosionParticle, hit.point, Quaternion.identity);
-                foreach(Collider collider in enemyExplosion)
+                foreach (Collider collider in enemyExplosion)
                 {
                     IDamageable damage = collider.gameObject.GetComponent<IDamageable>();
                     if (damage != null)
@@ -98,6 +98,7 @@ public class PlayerCombatManager : MonoBehaviour
                     }
                 }
             }
+            
         }
         else
         {

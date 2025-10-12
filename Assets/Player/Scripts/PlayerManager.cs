@@ -122,6 +122,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [Header("Audio")]
     public AudioSource overworldTheme;
     public AudioSource underworldTheme;
+    public SoundType bulletSound;
 
     [Header("Skybox")]
     public Material overworldSkybox;
@@ -170,8 +171,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
             TakeDamage(10);
         }
 
-        //enemySpawner.Instance.OnWaveEnd += 
-
     }
 
     public void GroundCheck()
@@ -190,9 +189,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
             deathSequenceStarted = true;
 
             if (currentLocation == PlayerLocation.Overworld)
+            {
                 PlayRikaCutscene();
+            }
             else
+            {
                 playerUIManager.EnableDeathMenu();
+                underworldTheme.volume = 0;
+                soundManager.instance.PlaySound(SoundType.GAME_OVER);
+            }
 
         }
         else
@@ -296,12 +301,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
         RenderSettings.skybox = underworldSkybox;
     }
 
-    public void CheckIfTransportToOverworld()
-    {
-        if (currentLocation == PlayerLocation.Hell)
-        {
-            Instantiate(heavenSequence);
-        }
+    public void TransportToOverworld()
+    {  
+       Instantiate(heavenSequence);
     }
     private void OnDrawGizmos()
     {

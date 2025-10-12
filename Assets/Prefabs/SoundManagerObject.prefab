@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5993723872cbc420aa3b70cc5adc99db, type: 3}
   - {fileID: 8300000, guid: 4784461ab08fd4be4a2a07d23916e0db, type: 3}
   - {fileID: 8300000, guid: 1518dafa8103b4bb892ef1ab6db6cee9, type: 3}
+  - {fileID: 8300000, guid: 2502a07a488ff4cf9ae41dc9beef056d, type: 3}
   soundPositionPrefab: {fileID: 0}
 --- !u!82 &8715509217685407550
 AudioSource:

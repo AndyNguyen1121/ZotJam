@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22108bb52cc816641842af25c46605e9, type: 3}
   m_Name: SkullGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
-  weaponBehavior: 0
-  damage: 1
-  fireRate: 20
+  weaponBehavior: 1
+  damage: 35
+  fireRate: 3
   range: 40
-  spread: 1
+  spread: 0
   shootSfx: 10

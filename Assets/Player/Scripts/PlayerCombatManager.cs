@@ -69,7 +69,7 @@ public class PlayerCombatManager : MonoBehaviour
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
 
-        soundManager.instance.PlaySound(SoundType.GUNSHOT);
+        soundManager.instance.PlaySound(PlayerManager.instance.bulletSound, 0.5f);
 
         Vector3 dir = GetDirection();
 

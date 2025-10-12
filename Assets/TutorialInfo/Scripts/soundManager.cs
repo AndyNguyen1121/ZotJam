@@ -13,7 +13,8 @@ public enum SoundType
     MONSTER_ATK,
     MONSTER_SCREAM,
     SKULL_GUN,
-    ZOMBIE_GROAN
+    ZOMBIE_GROAN,
+    GAME_OVER
 }
 
 [RequireComponent(typeof(AudioSource))]

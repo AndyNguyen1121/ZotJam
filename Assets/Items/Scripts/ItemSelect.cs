@@ -37,7 +37,12 @@ public class ItemSelect : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameObject.active = false;
-        enemySpawner.Instance.startWave = true;
+        if(PlayerManager.instance.currentLocation == PlayerLocation.Hell)
+        {
+            AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Overworld);
+        }
+
+        enemySpawner.Instance.NextWave();
     }
    
 }

@@ -196,7 +196,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             {
                 playerUIManager.EnableDeathMenu();
                 underworldTheme.volume = 0;
-                soundManager.instance.PlaySound(SoundType.GAME_OVER);
+                soundManager.instance.PlaySound(SoundType.GAME_OVER, 0.5f);
             }
 
         }

@@ -36,6 +36,7 @@ public class Rika : MonoBehaviour
         if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= (agent.stoppingDistance *agent.stoppingDistance))
         {
             PlayerManager.instance.TakeDamage(damage);
+            soundManager.instance.PlaySoundAtPosition(SoundType.MONSTER_ATK, transform.position, 0.1f);
         }
       
     }

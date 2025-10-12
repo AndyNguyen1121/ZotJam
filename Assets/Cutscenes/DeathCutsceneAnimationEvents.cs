@@ -11,6 +11,7 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
             PlayerManager.instance.mainCam.targetTexture = null;
             cutsceneCamera.enabled = true;
             cutsceneCamera.targetTexture = PlayerManager.instance.renderTexture;
+            soundManager.instance.PlaySound(SoundType.EERIE);
         }
     }
 

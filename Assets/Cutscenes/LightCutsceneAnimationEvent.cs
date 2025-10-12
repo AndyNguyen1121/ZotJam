@@ -6,4 +6,9 @@ public class LightCutsceneAnimationEvent : MonoBehaviour
     {
         AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Overworld);
     }
+
+    public void DestroyTheCutscene()
+    {
+        Destroy(gameObject);
+    }
 }

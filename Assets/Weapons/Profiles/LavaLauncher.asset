@@ -17,3 +17,4 @@ MonoBehaviour:
   fireRate: 10
   range: 30
   spread: 1
+  shootSfx: 7

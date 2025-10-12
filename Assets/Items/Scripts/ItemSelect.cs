@@ -39,7 +39,7 @@ public class ItemSelect : MonoBehaviour
         gameObject.active = false;
         if(PlayerManager.instance.currentLocation == PlayerLocation.Hell)
         {
-            AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Overworld);
+            PlayerManager.instance.TransportToOverworld();
         }
 
         enemySpawner.Instance.NextWave();

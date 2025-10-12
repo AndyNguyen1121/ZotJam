@@ -57,6 +57,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public float fireChance = 0;
     public float explosionChance = 0;
 
+    public float critChance = 0;
+    public float critMultiplier = 2;
+    public float lifeStealChance = 0;
     public float jumpHeight;
     public float maxMovementSpeed;
 
@@ -97,6 +100,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public CinemachineImpulseSource screenShake;
 
     [Header("Weapon Types")]
+    public GameObject defaultWeapon;
     public GameObject testWeapon;
     public GameObject testWeapon2;
 
@@ -112,11 +116,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public bool deathSequenceStarted;
     public RenderTexture renderTexture;
 
+    [Header("Heaven Sequence")]
+    public GameObject heavenSequence;
+
     [Header("Audio")]
     public AudioSource overworldTheme;
     public AudioSource underworldTheme;
 
-
+    [Header("Skybox")]
+    public Material overworldSkybox;
+    public Material underworldSkybox;
     public void Ignite()
     {
         
@@ -142,7 +151,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        EquipWeapon(testWeapon);
+        EquipWeapon(defaultWeapon);
 
         renderTexture = mainCam.targetTexture;
     }
@@ -160,6 +169,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
             EquipWeapon(testWeapon2);
             TakeDamage(10);
         }
+
+        //enemySpawner.Instance.OnWaveEnd += 
 
     }
 
@@ -274,6 +285,24 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Instantiate(deathCutscene, position, Quaternion.identity);
     }
 
+
+    public void ActivateOverworldSkybox()
+    {
+        RenderSettings.skybox = overworldSkybox;
+    }
+
+    public void ActivateHellSkybox()
+    {
+        RenderSettings.skybox = underworldSkybox;
+    }
+
+    public void CheckIfTransportToOverworld()
+    {
+        if (currentLocation == PlayerLocation.Hell)
+        {
+            Instantiate(heavenSequence);
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position +groundCheckOffset, groundCheckRadius);

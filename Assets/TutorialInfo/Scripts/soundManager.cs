@@ -2,7 +2,18 @@ using UnityEngine;
 
 public enum SoundType
 {
-    GUNSHOT
+     GUNSHOT,
+    BLOOD_PISTOL,
+    HELL_DRAG,
+    EERIE,
+    EVIL_BALL,
+    EXPLOSION,
+    HIT_FX,
+    LAVA_LAUNCHER,
+    MONSTER_ATK,
+    MONSTER_SCREAM,
+    SKULL_GUN,
+    ZOMBIE_GROAN
 }
 
 [RequireComponent(typeof(AudioSource))]

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: LavaLauncher
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
   weaponBehavior: 0
-  damage: 5
+  damage: 7
   fireRate: 10
   range: 30
   spread: 1
   shootSfx: 7
+  bulletTrail: {fileID: 0}

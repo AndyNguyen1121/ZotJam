@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BloodPistol
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
   weaponBehavior: 1
-  damage: 25
-  fireRate: 10
+  damage: 40
+  fireRate: 4
   range: 40
   spread: 0
   shootSfx: 1
+  bulletTrail: {fileID: 0}

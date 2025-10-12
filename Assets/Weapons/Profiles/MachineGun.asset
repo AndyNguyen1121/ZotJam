@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: MachineGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
   weaponBehavior: 0
-  damage: 1
+  damage: 3
   fireRate: 15
   range: 40
   spread: 1
+  shootSfx: 0
+  bulletTrail: {fileID: 0}

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
   weaponBehavior: 0
-  damage: 2
-  fireRate: 12
+  damage: 4
+  fireRate: 6
   range: 30
   spread: 1
+  shootSfx: 0
+  bulletTrail: {fileID: 0}

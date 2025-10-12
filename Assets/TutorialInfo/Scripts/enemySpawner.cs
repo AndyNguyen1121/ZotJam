@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 [System.Serializable]
 public struct SpawnCard
 {
@@ -16,7 +15,7 @@ public class enemySpawner : MonoBehaviour
     public static enemySpawner Instance { get; private set; }
     public float minimumDistanceFromPlayer = 5f;
 
-    public event Action OnWaveEnd;
+    public event System.Action OnWaveEnd;
     void Awake()
     {
         if (Instance == null)

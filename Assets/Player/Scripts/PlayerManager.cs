@@ -116,6 +116,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public bool deathSequenceStarted;
     public RenderTexture renderTexture;
 
+    [Header("Heaven Sequence")]
+    public GameObject heavenSequence;
+
     [Header("Audio")]
     public AudioSource overworldTheme;
     public AudioSource underworldTheme;
@@ -166,6 +169,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
             EquipWeapon(testWeapon2);
             TakeDamage(10);
         }
+
+        //enemySpawner.Instance.OnWaveEnd += 
 
     }
 
@@ -289,6 +294,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void ActivateHellSkybox()
     {
         RenderSettings.skybox = underworldSkybox;
+    }
+
+    public void CheckIfTransportToOverworld()
+    {
+        if (currentLocation == PlayerLocation.Hell)
+        {
+            Instantiate(heavenSequence);
+        }
     }
     private void OnDrawGizmos()
     {

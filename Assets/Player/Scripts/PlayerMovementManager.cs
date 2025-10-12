@@ -31,7 +31,7 @@ public class PlayerMovementManager : MonoBehaviour
     public float acceleration;
     public float deceleration;
     public float currentSpeed;
-    private Vector3 lastMoveVelocity;
+    public Vector3 lastMoveVelocity;
 
     [Header("JUICE")]
     public float minFOV;
@@ -47,6 +47,9 @@ public class PlayerMovementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerManager.instance.deathSequenceStarted)
+            return;
+
         HandleMovement(); 
         HandleCameraRotations();
         HandleGravity();

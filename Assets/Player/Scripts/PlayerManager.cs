@@ -13,10 +13,12 @@ public enum PlayerLocation
 public class PlayerManager : MonoBehaviour, IDamageable
 {
     public static PlayerManager instance;
+    public PlayerLocation currentLocation;
 
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
     [HideInInspector] public PlayerUIManager playerUIManager;
+    [HideInInspector] public PlayerMovementManager playerMovementManager;
     [HideInInspector] public Camera mainCam;
 
     // Private variables
@@ -51,6 +53,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
             range = baseRange * value;
         }
     }
+
+    public float fireChance = 0;
+    public float explosionChance = 0;
 
     public float jumpHeight;
     public float maxMovementSpeed;
@@ -101,7 +106,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private Coroutine vignetteFlash;
     private float _vignetteFlashDuration = 0.35f;
 
-    private bool deathSequenceStarted;
+    [Header("Death Sequence")]
+    public GameObject deathCutscene;
+    public bool deathSequenceStarted;
+
+    
 
     private void Awake()
     {
@@ -113,6 +122,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         characterController = GetComponent<CharacterController>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerUIManager = GetComponent<PlayerUIManager>();
+        playerMovementManager = GetComponent<PlayerMovementManager>();
         Health = MaxHealth;
     }
 
@@ -153,8 +163,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (Health == 0 && !deathSequenceStarted)
         {
             OnDeath.Invoke();
-            playerUIManager.EnableDeathMenu();
+            //playerUIManager.EnableDeathMenu();
             deathSequenceStarted = true;
+            PlayRikaCutscene();
+
         }
 
         playerUIManager.UpdateHealthSliders(Health, MaxHealth);
@@ -220,6 +232,21 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
 
         _vignette.color.value = Color.black;
+    }
+
+    private void PlayRikaCutscene()
+    {
+        Vector3 position = transform.position;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity, whatIsGround))
+        {
+            position = hit.point;
+            position.y += 1f;
+        }
+
+        Instantiate(deathCutscene, position, Quaternion.identity);
     }
 
     private void OnDrawGizmos()

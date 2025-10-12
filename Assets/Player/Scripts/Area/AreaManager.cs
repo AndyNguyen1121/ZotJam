@@ -35,13 +35,22 @@ public class AreaManager : MonoBehaviour
             Debug.LogError("There is no playermanager in the scene.");
         }
 
+        PlayerManager.instance.characterController.enabled = false;
+        PlayerManager.instance.playerMovementManager.lastMoveVelocity = Vector3.zero;
+
         if (location == PlayerLocation.Overworld)
         {
             PlayerManager.instance.transform.position = playerSpawnOverworld.transform.position;
+            PlayerManager.instance.currentLocation = location;
         }
         else
         {
+
             PlayerManager.instance.transform.position = playerSpawnHell.transform.position;
+            Debug.Log("Spawn in hell");
+            PlayerManager.instance.currentLocation = location;
         }
+
+        PlayerManager.instance.characterController.enabled = true;
     }
 }

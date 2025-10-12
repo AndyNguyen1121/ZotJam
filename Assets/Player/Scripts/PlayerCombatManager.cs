@@ -8,6 +8,11 @@ public class PlayerCombatManager : MonoBehaviour
     private bool isFiring;
     private float nextFireTime;
     public TrailRenderer bulletTrail;
+    public Animator gunAnimator;
+    public AnimationClip singleShootClip;
+    public AnimationClip autoShootClip;
+    public float explosionRadius = 3f;
+    public GameObject explosionParticle;
 
     [SerializeField]
     private Vector3 bulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
@@ -41,6 +46,18 @@ public class PlayerCombatManager : MonoBehaviour
 
     private void Fire()
     {
+        if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single)
+        {
+            gunAnimator.Play("SingleShoot", 0, 0);
+        }
+        else
+        {
+            gunAnimator.Play("AutoShoot", 0, 0);
+        }
+    }
+
+    public void ShootBullet()
+    {
         RaycastHit hit;
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
@@ -59,6 +76,27 @@ public class PlayerCombatManager : MonoBehaviour
             if (damageScript != null)
             {
                 damageScript.TakeDamage(PlayerManager.instance.damage);
+            }
+
+            if (Random.Range(0, 101) < PlayerManager.instance.fireChance)
+            {
+
+            }
+
+            if (Random.Range(0, 101) < PlayerManager.instance.explosionChance)
+            {
+                Collider[] enemyExplosion = Physics.OverlapSphere(hit.point, explosionRadius, PlayerManager.instance.whatIsDamageable);
+                Instantiate(explosionParticle, hit.point, Quaternion.identity);
+                foreach(Collider collider in enemyExplosion)
+                {
+                    IDamageable damage = collider.gameObject.GetComponent<IDamageable>();
+                    if (damage != null)
+                    {
+                        damage.TakeDamage(PlayerManager.instance.damage * 1.5f);
+
+                        DebugDrawSphere(hit.point, explosionRadius, Color.green, 2f);
+                    }
+                }
             }
         }
         else
@@ -105,5 +143,27 @@ public class PlayerCombatManager : MonoBehaviour
                 PlayerManager.instance.range);
         }
 
+    }
+
+    void DebugDrawSphere(Vector3 center, float radius, Color color, float duration = 0f, int segments = 16)
+    {
+        for (int i = 0; i < segments; i++)
+        {
+            float theta1 = (i / (float)segments) * 2 * Mathf.PI;
+            float theta2 = ((i + 1) / (float)segments) * 2 * Mathf.PI;
+
+            // Draw circles on 3 planes
+            Vector3 p1 = center + new Vector3(Mathf.Cos(theta1) * radius, Mathf.Sin(theta1) * radius, 0);
+            Vector3 p2 = center + new Vector3(Mathf.Cos(theta2) * radius, Mathf.Sin(theta2) * radius, 0);
+            Debug.DrawLine(p1, p2, color, duration);
+
+            p1 = center + new Vector3(Mathf.Cos(theta1) * radius, 0, Mathf.Sin(theta1) * radius);
+            p2 = center + new Vector3(Mathf.Cos(theta2) * radius, 0, Mathf.Sin(theta2) * radius);
+            Debug.DrawLine(p1, p2, color, duration);
+
+            p1 = center + new Vector3(0, Mathf.Cos(theta1) * radius, Mathf.Sin(theta1) * radius);
+            p2 = center + new Vector3(0, Mathf.Cos(theta2) * radius, Mathf.Sin(theta2) * radius);
+            Debug.DrawLine(p1, p2, color, duration);
+        }
     }
 }

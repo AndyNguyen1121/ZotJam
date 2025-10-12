@@ -8,7 +8,6 @@ public class PopUpControl : MonoBehaviour
     {
         power.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     
     void Start()

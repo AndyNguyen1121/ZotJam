@@ -5,6 +5,11 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+public enum PlayerLocation
+{
+    Overworld,
+    Hell
+}
 public class PlayerManager : MonoBehaviour, IDamageable
 {
     public static PlayerManager instance;

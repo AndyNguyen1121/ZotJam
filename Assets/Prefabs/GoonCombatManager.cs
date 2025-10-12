@@ -40,6 +40,7 @@ public class GoonCombatManager : MonoBehaviour
             animator.CrossFade("Attack", 0.1f);
             canAttack = false;
             agent.isStopped = true;
+            soundManager.instance.PlaySoundAtPosition(SoundType.ZOMBIE_GROAN, transform.position, 0.5f);
         }
     }
 

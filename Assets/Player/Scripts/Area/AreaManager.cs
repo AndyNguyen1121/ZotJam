@@ -39,6 +39,9 @@ public class AreaManager : MonoBehaviour
         PlayerManager.instance.characterController.enabled = false;
         PlayerManager.instance.playerMovementManager.lastMoveVelocity = Vector3.zero;
 
+        enemySpawner.Instance.KillAllEnemies();
+        enemySpawner.Instance.NextWave();
+
         if (location == PlayerLocation.Overworld)
         {
             PlayerManager.instance.transform.position = playerSpawnOverworld.transform.position;
@@ -55,6 +58,7 @@ public class AreaManager : MonoBehaviour
             PlayerManager.instance.playerUIManager.DisableHellSliderShake();
             PlayerManager.instance._vignette.color.value = Color.black;
             PlayerManager.instance.ActivateOverworldSkybox();
+
         }
         else
         {

@@ -47,6 +47,7 @@ public class enemySpawner : MonoBehaviour
     public Collider overworldCollider;
     public Collider hellCollider;
 
+    public List<GameObject> allEnemies;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -73,7 +74,7 @@ public class enemySpawner : MonoBehaviour
             {
                 waveCounter++;
                 List<SpawnCard> deck = new List<SpawnCard>();
-                foreach(SpawnCard enemy in enemyOptions)
+                foreach (SpawnCard enemy in enemyOptions)
                 {
                     for (int i = 0; i < enemy.weight; i++)
                     {
@@ -81,12 +82,12 @@ public class enemySpawner : MonoBehaviour
                     }
                 }
 
-               
+
                 float difficulty = Mathf.CeilToInt(10f * Mathf.Pow(1.2f, (float)waveCounter)); //calculates number of enemies to spawn this wave, exponential growth
-              
+
                 startWave = false;
-                
-                while(difficulty > 0)
+
+                while (difficulty > 0)
                 {
                     SpawnCard newEnemy = deck[Random.Range(0, deck.Count)];
                     SpawnOne(newEnemy.enemy);
@@ -167,6 +168,20 @@ public class enemySpawner : MonoBehaviour
         }
         */
     }
+    public void NextWave()
+    {
+        isWaveClear = true;
+        startWave = true;
+    }
+    public void KillAllEnemies()
+    {
+        foreach (GameObject enemy in allEnemies)
+        {
+            Destroy(enemy);
+        }
+        enemiesAlive = 0;
+        allEnemies = new List<GameObject>();
+    }
 
     void SpawnOne(GameObject _enemy)
     {
@@ -175,7 +190,7 @@ public class enemySpawner : MonoBehaviour
 
         Vector3 pos = GetColliderPosition();
         var enemy = Instantiate(_enemy, pos, Quaternion.identity);
-
+        allEnemies.Add(enemy);
         enemy.transform.forward = (player.position - pos).normalized;
 
     }

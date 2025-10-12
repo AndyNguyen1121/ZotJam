@@ -42,5 +42,6 @@ public class Balls : MonoBehaviour
     {
         Vector3 dir = (PlayerManager.instance.transform.position - fireBallSpawnLocation.position).normalized;
         Instantiate(bullet, fireBallSpawnLocation.position, Quaternion.LookRotation(dir));
+        soundManager.instance.PlaySoundAtPosition(SoundType.EVIL_BALL, transform.position, 0.5f);
     }
 }

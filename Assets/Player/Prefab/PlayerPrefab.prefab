@@ -2526,6 +2526,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   screenShake: {fileID: 615848961622706347}
+  defaultWeapon: {fileID: 7550503529971772137, guid: 95d997a421bc2d345a4b11cfeff2ba5e, type: 3}
   testWeapon: {fileID: 2078034947190057225, guid: 0cb3613d4763ffe4db58d204d3f776cb, type: 3}
   testWeapon2: {fileID: 3033799472534264946, guid: 8f369bb2844e1454caba0564005a9201, type: 3}
   _volume: {fileID: 1783619168525022691}
@@ -2534,8 +2535,11 @@ MonoBehaviour:
   deathCutscene: {fileID: 3831212711819604045, guid: 762a742ee7562479dab141270a60ea27, type: 3}
   deathSequenceStarted: 0
   renderTexture: {fileID: 0}
+  heavenSequence: {fileID: 0}
   overworldTheme: {fileID: 7580483954984700556}
   underworldTheme: {fileID: 2681674110667902373}
+  overworldSkybox: {fileID: 2100000, guid: 4236e41e91899bb46b87d7801a15e258, type: 2}
+  underworldSkybox: {fileID: 2100000, guid: 944dfd31aa2951043a14d73dd7834773, type: 2}
 --- !u!143 &7193896212160997746
 CharacterController:
   m_ObjectHideFlags: 0

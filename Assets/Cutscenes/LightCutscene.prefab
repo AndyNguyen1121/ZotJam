@@ -452,6 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130381260563808745}
   - component: {fileID: 5999739071853344871}
+  - component: {fileID: 8456368107451637856}
   m_Layer: 0
   m_Name: LightCutscene
   m_TagString: Untagged
@@ -498,6 +499,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8456368107451637856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6572160798117557009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1077a18a136a0243b4ebc920afdcc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &8283895602631983388
 GameObject:
   m_ObjectHideFlags: 0

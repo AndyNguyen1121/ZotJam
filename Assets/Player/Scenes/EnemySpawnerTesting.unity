@@ -1426,7 +1426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
       propertyPath: enemyOptions.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
       propertyPath: enemyOptions.Array.data[0].enemy
@@ -1441,6 +1441,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6791504159427037280, guid: 8b5a83b80af49406db77cff17d326b8a, type: 3}
     - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[3].enemy
+      value: 
+      objectReference: {fileID: 6791504159427037280, guid: 13efeb8832ab04fcfa34ba2fd7190943, type: 3}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[4].enemy
+      value: 
+      objectReference: {fileID: 6791504159427037280, guid: b330f791ad4bd4c3689e39d1bd0d3531, type: 3}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
       propertyPath: enemyOptions.Array.data[0].weight
       value: 5
       objectReference: {fileID: 0}
@@ -1453,6 +1461,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[3].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[4].weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
       propertyPath: enemyOptions.Array.data[0].difficulty
       value: 1
       objectReference: {fileID: 0}
@@ -1463,6 +1479,14 @@ PrefabInstance:
     - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
       propertyPath: enemyOptions.Array.data[2].difficulty
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[3].difficulty
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[4].difficulty
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

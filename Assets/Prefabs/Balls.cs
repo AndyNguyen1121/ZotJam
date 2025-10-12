@@ -10,6 +10,8 @@ public class Balls : MonoBehaviour
 
     public float attackInterval;
     float attackTimer;
+    public GameObject bullet;
+    public Transform fireBallSpawnLocation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +26,7 @@ public class Balls : MonoBehaviour
             attackTimer -= Time.deltaTime;
 
         }
-        else if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= agent.stoppingDistance)
+        else if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= (agent.stoppingDistance*agent.stoppingDistance))
         {
             Attack();
             attackTimer = attackInterval;
@@ -34,7 +36,7 @@ public class Balls : MonoBehaviour
     
     public void Attack()
     {
-        
-      
+        Vector3 dir = (PlayerManager.instance.transform.position - fireBallSpawnLocation.position).normalized;
+        Instantiate(bullet, fireBallSpawnLocation.position, Quaternion.LookRotation(dir));
     }
 }

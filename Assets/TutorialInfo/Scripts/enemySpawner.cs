@@ -27,6 +27,7 @@ public class enemySpawner : MonoBehaviour
     public bool isWaveClear = true;
     public bool startWave = true;
     public bool isSecondStage = false;
+    public int enemiesAlive = 0;
 
     float timer, secondStageSpawnTimer;
 
@@ -45,6 +46,7 @@ public class enemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        secondStageSpawnTimer += Time.deltaTime;
 
         if (player == null) return;
 
@@ -56,6 +58,7 @@ public class enemySpawner : MonoBehaviour
             if (startWave)
             {
                 enemiesToSpawn = Mathf.CeilToInt(Mathf.Exp((waveCounter / 10f) - 1) + 10); //calculates number of enemies to spawn this wave, exponential growth
+                enemiesAlive = enemiesToSpawn;
                 startWave = false;
                 Debug.LogError("Enemies to spawn: " + enemiesToSpawn);
             }
@@ -85,14 +88,25 @@ public class enemySpawner : MonoBehaviour
         }
 
         if (isSecondStage && enemiesToSpawn >= 0)
-            {
-                secondStageSpawnTimer += Time.deltaTime;
+        {
+            Debug.LogError(enemiesToSpawn);
+                
                 float timeBetweenSpawn = Random.Range(3f, 11f); // min is inclusive, max is exclusive
 
                 if (secondStageSpawnTimer > timeBetweenSpawn)
-                {
+            {   
+                    // issue when SecondStage needs to run again. 
+                    // Ex. on the first wave there are 11 total enemies. 5 spawn in the first stage, leaving 6 for the second stage.
+                    // The second stage spawns less than 6 enemies and require another iteration of the second stage. 
+                    // However, the second stage will spawn an extra enemy, so 12 total instead of 11.
+                    
                     secondStageSpawnTimer = 0f;
                     int amountToSpawn = Random.Range(3, 11);
+                    if (amountToSpawn > enemiesToSpawn)
+                    {
+                        amountToSpawn = enemiesToSpawn;
+                    }
+                    
                     for (int j = 0; j < amountToSpawn; j++) // spawn a group of enemies
                     {
                         SpawnOne();
@@ -126,5 +140,6 @@ public class enemySpawner : MonoBehaviour
         var enemy = Instantiate(defaultEnemy, pos, Quaternion.identity);
 
         enemy.transform.forward = (player.position - pos).normalized;
+        
     }
 }

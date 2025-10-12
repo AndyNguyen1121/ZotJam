@@ -49,11 +49,13 @@ public class PlayerCombatManager : MonoBehaviour
     {
         if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single && Time.time >= nextFireTime)
         {
+            gunAnimator.speed = singleShootClip.length * PlayerManager.instance.fireRate;
             gunAnimator.Play("SingleShoot", 0, 0);
             nextFireTime = Time.time + 1f / PlayerManager.instance.fireRate;
         }
         else if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Auto)
         {
+            gunAnimator.speed = autoShootClip.length * PlayerManager.instance.fireRate;
             gunAnimator.Play("AutoShoot", 0, 0);
         }
     }

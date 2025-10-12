@@ -3,7 +3,17 @@ using UnityEngine;
 public class enemySpawner : MonoBehaviour
 {
 
-    
+    public static enemySpawner Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
+
     public GameObject defaultEnemy;
     public Transform player;
     public float minRadius = 20f;

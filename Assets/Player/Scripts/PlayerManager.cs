@@ -56,10 +56,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public float fireChance = 0;
     public float explosionChance = 0;
-    
-    public float critChance;
-    public float critDamage;
-    public float lifeStealChance;
+
+    public float critChance = 0;
+    public float critMultiplier = 2;
+    public float lifeStealChance = 0;
     public float jumpHeight;
     public float maxMovementSpeed;
 

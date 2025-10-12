@@ -15,5 +15,6 @@ public class WeaponProfile : ScriptableObject
     public float range;
     public bool spread;
     public SoundType shootSfx;
+    public TrailRenderer bulletTrail;
     
 }

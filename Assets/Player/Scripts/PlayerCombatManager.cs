@@ -102,6 +102,11 @@ public class PlayerCombatManager : MonoBehaviour
                     {
                         damage.TakeDamage(PlayerManager.instance.damage * 1.5f);
 
+                        if (Random.Range(0, 101) < PlayerManager.instance.fireChance)
+                        {
+                            damage.Ignite();
+                        }
+
                         //DebugDrawSphere(hit.point, explosionRadius, Color.green, 2f);
                     }
                 }

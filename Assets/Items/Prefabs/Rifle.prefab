@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7377b8cdb8bf74560a8c8db238f3dfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponEquip
-  icon: {fileID: 21300000, guid: 8ab783322115e49da982daea4e22b5d8, type: 3}
+  icon: {fileID: 21300000, guid: ad75a1c9e62c14daba635bae20c66015, type: 3}
   name: Rifle
   description: It's a rifle.
   prefab: {fileID: 51761928327063807, guid: 4b0203f052282594f8d53c9b88e2a184, type: 3}

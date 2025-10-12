@@ -16,6 +16,7 @@ public class enemySpawner : MonoBehaviour
     public static enemySpawner Instance { get; private set; }
     public float minimumDistanceFromPlayer = 5f;
 
+    public event Action OnWaveEnd;
     void Awake()
     {
         if (Instance == null)
@@ -117,6 +118,7 @@ public class enemySpawner : MonoBehaviour
         if (enemiesAlive <= 0 && !isWaveClear)
         {
             isWaveClear = true;
+            OnWaveEnd?.Invoke();
             if (!itemSelect.activeSelf)
             {
                 itemSelect.SetActive(true);

@@ -102,15 +102,21 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [Header("Vignette")]
     [SerializeField] private Volume _volume;
-    private Vignette _vignette;
+    [HideInInspector] public Vignette _vignette;
     private Coroutine vignetteFlash;
     private float _vignetteFlashDuration = 0.35f;
+    public Color hellColor;
 
     [Header("Death Sequence")]
     public GameObject deathCutscene;
     public bool deathSequenceStarted;
     public RenderTexture renderTexture;
-    
+
+    [Header("Audio")]
+    public AudioSource overworldTheme;
+    public AudioSource underworldTheme;
+
+
     public void Ignite()
     {
         
@@ -177,16 +183,19 @@ public class PlayerManager : MonoBehaviour, IDamageable
                 playerUIManager.EnableDeathMenu();
 
         }
-
-        playerUIManager.UpdateHealthSliders(Health, MaxHealth);
-        screenShake.GenerateImpulseAt(transform.position, new Vector3(2, 2, 2));
-
-        if (vignetteFlash != null)
+        else
         {
-            StopCoroutine(vignetteFlash);
-        }
 
-        vignetteFlash = StartCoroutine(DamageVignette());
+            playerUIManager.UpdateHealthSliders(Health, MaxHealth);
+            screenShake.GenerateImpulseAt(transform.position, new Vector3(2, 2, 2));
+
+            if (vignetteFlash != null)
+            {
+                StopCoroutine(vignetteFlash);
+            }
+
+            vignetteFlash = StartCoroutine(DamageVignette());
+        }
     }
 
     public void SetHealthValue(float value)
@@ -222,9 +231,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
         float elapsedTime = 0;
         _vignette.color.value = Color.black;
 
+        Color originalColor = Color.black;
+        if (currentLocation == PlayerLocation.Hell)
+        {
+            originalColor = hellColor;
+        }
+
         while (elapsedTime < (_vignetteFlashDuration / 2))
         {
-            _vignette.color.value = Color.Lerp(Color.black, Color.red, elapsedTime / (_vignetteFlashDuration / 2));
+            _vignette.color.value = Color.Lerp(originalColor, Color.red, elapsedTime / (_vignetteFlashDuration / 2));
             elapsedTime += Time.deltaTime;
             yield return null;
 
@@ -234,13 +249,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         while (elapsedTime < (_vignetteFlashDuration / 2))
         {
-            _vignette.color.value = Color.Lerp(Color.red, Color.black, elapsedTime / (_vignetteFlashDuration / 2));
+            _vignette.color.value = Color.Lerp(Color.red, originalColor, elapsedTime / (_vignetteFlashDuration / 2));
             elapsedTime += Time.deltaTime;
             yield return null;
 
         }
 
-        _vignette.color.value = Color.black;
+        _vignette.color.value = originalColor;
     }
 
     private void PlayRikaCutscene()

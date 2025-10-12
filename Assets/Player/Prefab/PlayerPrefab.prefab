@@ -1621,6 +1621,8 @@ MonoBehaviour:
   deathCutscene: {fileID: 3831212711819604045, guid: 762a742ee7562479dab141270a60ea27, type: 3}
   deathSequenceStarted: 0
   renderTexture: {fileID: 0}
+  overworldTheme: {fileID: 7580483954984700556}
+  underworldTheme: {fileID: 2681674110667902373}
 --- !u!143 &7193896212160997746
 CharacterController:
   m_ObjectHideFlags: 0

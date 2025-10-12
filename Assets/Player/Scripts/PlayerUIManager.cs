@@ -10,6 +10,7 @@ public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager instance;
     private PlayerManager playerManager;
+    public GameObject secondWindText;
 
     [Header("Sliders")]
     public Slider healthSlider;
@@ -19,8 +20,16 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Death Menu")]
     public GameObject deathMenu;
 
+    [Header("PauseMenu")]
+    public GameObject pauseMenu;
+    public bool isPaused;
+
+    [Header("Sensitivity")]
+    public Slider sensitivitySlider;
+
     private DG.Tweening.Sequence sliderUpdateSequence;
     private Tween sliderShake;
+    private Tween hellSliderShake;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,6 +42,25 @@ public class PlayerUIManager : MonoBehaviour
     private void Start()
     {
         playerManager = PlayerManager.instance;
+        sensitivitySlider.onValueChanged.AddListener(OnSensitivitySliderChanged);
+
+        playerManager.playerMovementManager.sensitivity = PlayerPrefs.GetFloat("Sensitivity", 0.15f);
+        PlayerPrefs.Save();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                ActivatePauseMenu();
+            }
+            else
+            {
+                DisablePauseMenu();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -67,6 +95,51 @@ public class PlayerUIManager : MonoBehaviour
         Cursor.visible = true;
 
         Time.timeScale = 0f;
+    }
+
+    private void ActivatePauseMenu()
+    {
+        isPaused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+
+        PlayerInputManager.instance.playerControls.Disable();
+    }
+
+    public void DisablePauseMenu()
+    {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        PlayerInputManager.instance.playerControls.Enable();
+    }
+
+    public void OnSensitivitySliderChanged(float value)
+    {
+        PlayerManager.instance.playerMovementManager.sensitivity = value;
+        PlayerPrefs.SetFloat("Sensitivity", value);
+        PlayerPrefs.Save();
+    }
+
+    public void DisableHellSliderShake()
+    {
+        if (hellSliderShake != null)
+            hellSliderShake.Kill();
+    }
+
+    public void ActivateHellSliderShake()
+    {
+        if (hellSliderShake != null)
+            hellSliderShake.Kill();
+
+        hellSliderShake = healthCanvasGroup.DOShakePosition(100000f, 3);
     }
 
 }

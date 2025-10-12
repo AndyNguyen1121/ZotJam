@@ -613,9 +613,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3356720084913080541}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2895433598116180067}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
       insertIndex: -1
@@ -631,25 +628,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
   m_PrefabInstance: {fileID: 3915470082731903243}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &3356720084913080541
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4222092328714286170}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: -6842666708266138392, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
-  m_Animations:
-  - {fileID: -6842666708266138392, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
-  - {fileID: -6039235621738319110, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
-  - {fileID: -4791504522942941401, guid: 7d71755fe80464542a831c4dcfcf01c3, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!114 &2895433598116180067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +645,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   bullet: {fileID: 9153702717905152612, guid: 2fa844f817c62f24899b6adb2117297f, type: 3}
   fireBallSpawnLocation: {fileID: 7465978927415102948}
+  rotationSpeed: 10
   canAttack: 1
 --- !u!95 &3639340035683225436
 Animator:

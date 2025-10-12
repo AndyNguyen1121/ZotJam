@@ -26,6 +26,7 @@ public class PlayerMovementManager : MonoBehaviour
     [Header("Rotation")]
     public float minPitch;
     public float maxPitch;
+    public float sensitivity = 0.25f;
 
     [Header("Acceleration")]
     public float acceleration;
@@ -102,13 +103,14 @@ public class PlayerMovementManager : MonoBehaviour
 
     void HandleCameraRotations()
     {
-        if (PlayerInputManager.instance.cameraInput == Vector2.zero)
+        if (PlayerInputManager.instance.cameraInput == Vector2.zero ||
+            PlayerManager.instance.playerUIManager.isPaused)
             return;
 
         Vector2 input = PlayerInputManager.instance.cameraInput;
 
-        yaw += input.x * 10 * Time.deltaTime;
-        pitch -= input.y * 10 * Time.deltaTime;
+        yaw += input.x * sensitivity;
+        pitch -= input.y * sensitivity;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         transform.rotation = Quaternion.Euler(0, yaw, 0f);

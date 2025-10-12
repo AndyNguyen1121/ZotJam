@@ -46,11 +46,12 @@ public class PlayerCombatManager : MonoBehaviour
 
     private void Fire()
     {
-        if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single)
+        if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single && Time.time >= nextFireTime)
         {
             gunAnimator.Play("SingleShoot", 0, 0);
+            nextFireTime = Time.time + 1f / PlayerManager.instance.fireRate;
         }
-        else
+        else if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Auto)
         {
             gunAnimator.Play("AutoShoot", 0, 0);
         }

@@ -8,7 +8,9 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
         if (PlayerManager.instance != null)
         {
             PlayerManager.instance.mainCam.enabled = false;
+            PlayerManager.instance.mainCam.targetTexture = null;
             cutsceneCamera.enabled = true;
+            cutsceneCamera.targetTexture = PlayerManager.instance.renderTexture;
         }
     }
 
@@ -20,6 +22,7 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
         }
         AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Hell);
         PlayerManager.instance.mainCam.enabled = true;
+        PlayerManager.instance.mainCam.targetTexture = PlayerManager.instance.renderTexture;
         PlayerManager.instance.SetHealthValue(50);
         PlayerManager.instance.deathSequenceStarted = false;
         

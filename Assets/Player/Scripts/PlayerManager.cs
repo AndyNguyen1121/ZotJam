@@ -109,7 +109,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [Header("Death Sequence")]
     public GameObject deathCutscene;
     public bool deathSequenceStarted;
-
+    public RenderTexture renderTexture;
     
 
     private void Awake()
@@ -133,6 +133,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Cursor.visible = false;
         _volume.profile.TryGet(out _vignette);
         EquipWeapon(testWeapon);
+
+        renderTexture = mainCam.targetTexture;
     }
 
     private void Update()

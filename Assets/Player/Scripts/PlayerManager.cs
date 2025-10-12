@@ -97,6 +97,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public CinemachineImpulseSource screenShake;
 
     [Header("Weapon Types")]
+    public GameObject defaultWeapon;
     public GameObject testWeapon;
     public GameObject testWeapon2;
 
@@ -116,7 +117,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public AudioSource overworldTheme;
     public AudioSource underworldTheme;
 
-
+    [Header("Skybox")]
+    public Material overworldSkybox;
+    public Material underworldSkybox;
     public void Ignite()
     {
         
@@ -142,7 +145,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        EquipWeapon(testWeapon);
+        EquipWeapon(defaultWeapon);
 
         renderTexture = mainCam.targetTexture;
     }
@@ -274,6 +277,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Instantiate(deathCutscene, position, Quaternion.identity);
     }
 
+
+    public void ActivateOverworldSkybox()
+    {
+        RenderSettings.skybox = overworldSkybox;
+    }
+
+    public void ActivateHellSkybox()
+    {
+        RenderSettings.skybox = underworldSkybox;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position +groundCheckOffset, groundCheckRadius);

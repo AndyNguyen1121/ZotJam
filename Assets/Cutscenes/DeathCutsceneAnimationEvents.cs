@@ -25,7 +25,6 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
         PlayerManager.instance.mainCam.targetTexture = PlayerManager.instance.renderTexture;
         PlayerManager.instance.SetHealthValue(PlayerManager.instance.MaxHealth);
         PlayerManager.instance.deathSequenceStarted = false;
-        
         Destroy(gameObject);
         
     }

@@ -1803,6 +1803,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8404190370466521307, guid: 6b573eb92526a4248bc48666f07844a4, type: 3}
+      propertyPath: bloodParticle
+      value: 
+      objectReference: {fileID: 1002342517828524857, guid: 11ccd6b95bf92485aa487379aa63c909, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -49,7 +49,10 @@ public class PlayerCombatManager : MonoBehaviour
     {
         if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single && Time.time >= nextFireTime)
         {
-            gunAnimator.speed = singleShootClip.length * PlayerManager.instance.fireRate;
+            if (PlayerManager.instance.fireRate > 6)
+            {
+                gunAnimator.speed = singleShootClip.length * PlayerManager.instance.fireRate;
+            }
             gunAnimator.Play("SingleShoot", 0, 0);
             nextFireTime = Time.time + 1f / PlayerManager.instance.fireRate;
         }
@@ -65,6 +68,8 @@ public class PlayerCombatManager : MonoBehaviour
         RaycastHit hit;
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
+
+        soundManager.instance.PlaySound(SoundType.GUNSHOT);
 
         Vector3 dir = GetDirection();
 
@@ -99,6 +104,11 @@ public class PlayerCombatManager : MonoBehaviour
                     if (damage != null)
                     {
                         damage.TakeDamage(PlayerManager.instance.damage * 1.5f);
+
+                        if (Random.Range(0, 101) < PlayerManager.instance.fireChance)
+                        {
+                            damage.Ignite();
+                        }
 
                         //DebugDrawSphere(hit.point, explosionRadius, Color.green, 2f);
                     }

@@ -43,9 +43,17 @@ public class PlayerUIManager : MonoBehaviour
     {
         playerManager = PlayerManager.instance;
         sensitivitySlider.onValueChanged.AddListener(OnSensitivitySliderChanged);
+        PlayerPrefs.DeleteAll();
 
-        playerManager.playerMovementManager.sensitivity = PlayerPrefs.GetFloat("Sensitivity", 0.15f);
-        PlayerPrefs.Save();
+        if (PlayerPrefs.GetFloat("Sensitivity") == 0)
+        {
+            PlayerPrefs.SetFloat("Sensitivity", 0.1f);
+            PlayerPrefs.Save();
+            playerManager.playerMovementManager.sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+
+        }
+
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
     }
 
     private void Update()

@@ -5,13 +5,15 @@ public enum SoundType
     GUNSHOT
 }
 
+[RequireComponent(typeof(AudioSource))]
+
 public class soundManager : MonoBehaviour
 {
 
     [SerializeField] private AudioClip[] soundList;
-    private static soundManager instance;
+    public static soundManager instance;
     private AudioSource audioSource;
-
+    [SerializeField] AudioSource soundPositionPrefab;
 
     private void Awake()
     {
@@ -23,8 +25,13 @@ public class soundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySound(SoundType Sound, float volume = 1)
+    public void PlaySound(SoundType Sound, float volume = 1)
     {
-        instance.audioSource.PlayOneShot(instance.soundList[(int)Sound], volume);
+        audioSource.PlayOneShot(soundList[(int)Sound], volume);
+    }
+
+    public void PlaySoundAtPosition(SoundType Sound, Vector3 position, float volume = 1)
+    {
+        AudioSource.PlayClipAtPoint(soundList[(int)Sound], position, volume);
     }
 }

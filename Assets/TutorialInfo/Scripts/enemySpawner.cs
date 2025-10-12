@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 public struct SpawnCard
@@ -13,7 +13,9 @@ public class enemySpawner : MonoBehaviour
 {
 
     public static enemySpawner Instance { get; private set; }
+    public float minimumDistanceFromPlayer = 5f;
 
+    public event System.Action OnWaveEnd;
     void Awake()
     {
         if (Instance == null)
@@ -42,14 +44,15 @@ public class enemySpawner : MonoBehaviour
     public GameObject itemSelect;
     float timer, secondStageSpawnTimer;
 
-
+    public Collider overworldCollider;
+    public Collider hellCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (player == null)
         {
-            var p = GameObject.FindWithTag("Player");
+            var p = PlayerManager.instance.gameObject;
             if (p) player = p.transform;
         }
     }
@@ -114,6 +117,7 @@ public class enemySpawner : MonoBehaviour
         if (enemiesAlive <= 0 && !isWaveClear)
         {
             isWaveClear = true;
+            OnWaveEnd?.Invoke();
             if (!itemSelect.activeSelf)
             {
                 itemSelect.SetActive(true);
@@ -169,10 +173,59 @@ public class enemySpawner : MonoBehaviour
         float r = Random.Range(minRadius, maxRadius);
         float ang = Random.Range(0f, Mathf.PI * 2f);
 
-        Vector3 pos = player.position + new Vector3(Mathf.Cos(ang), 0, Mathf.Sin(ang)) * r;
+        Vector3 pos = GetColliderPosition();
         var enemy = Instantiate(_enemy, pos, Quaternion.identity);
 
         enemy.transform.forward = (player.position - pos).normalized;
 
+    }
+
+    public Vector3 GetColliderPosition()
+    {
+        if (PlayerManager.instance == null)
+        {
+            Debug.Log("No PlayerManager");
+            return Vector3.zero;
+        }
+
+        Transform areaTransform = null;
+        Vector3 cubeCenter = Vector3.zero;
+        Vector3 cubeSize = Vector3.zero;
+        Collider currentCollider = null;
+        if (PlayerManager.instance.currentLocation == PlayerLocation.Overworld)
+        {
+            areaTransform = overworldCollider.transform;
+            cubeCenter = overworldCollider.bounds.center;
+            cubeSize = overworldCollider.bounds.size;
+            currentCollider = overworldCollider;
+        }
+        else
+        {
+            areaTransform = hellCollider.transform;
+            cubeCenter = hellCollider.bounds.center;
+            cubeSize = hellCollider.bounds.size;
+            currentCollider = hellCollider;
+        }
+
+        Vector3 randomPos = cubeCenter + new Vector3(
+                Random.Range(-cubeSize.x / 2f, cubeSize.x / 2f),
+                0,
+                Random.Range(-cubeSize.z / 2f, cubeSize.z / 2f));
+
+        // Adjust position if too close to player
+        if (Vector3.Distance(PlayerManager.instance.transform.position, randomPos) < minimumDistanceFromPlayer)
+        {
+            Vector3 dirToAdjustSpawnLocation = (randomPos - PlayerManager.instance.transform.position).normalized;
+            dirToAdjustSpawnLocation.y = 0;
+            randomPos = PlayerManager.instance.transform.position + (dirToAdjustSpawnLocation * minimumDistanceFromPlayer);
+            randomPos.y = currentCollider.transform.position.y;
+        }
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPos, out hit, 4f, NavMesh.AllAreas))
+        {
+            randomPos = hit.position;
+        }
+        return randomPos;
     }
 }

@@ -54,6 +54,7 @@ public class AreaManager : MonoBehaviour
             PlayerManager.instance.playerMovementManager.maxFOV = 75;
             PlayerManager.instance.playerUIManager.DisableHellSliderShake();
             PlayerManager.instance._vignette.color.value = Color.black;
+            PlayerManager.instance.ActivateOverworldSkybox();
         }
         else
         {
@@ -71,6 +72,7 @@ public class AreaManager : MonoBehaviour
             PlayerManager.instance.playerMovementManager.maxFOV = 85;
             PlayerManager.instance.playerUIManager.ActivateHellSliderShake();
             PlayerManager.instance._vignette.color.value = PlayerManager.instance.hellColor;
+            PlayerManager.instance.ActivateHellSkybox();
         }
 
         Debug.Log("enabled");

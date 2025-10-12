@@ -12,7 +12,8 @@ public class Rika : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        float randomScreamDelay = Random.Range(2, 10);
+        InvokeRepeating("Scream", randomScreamDelay, randomScreamDelay);
     }
 
     // Update is called once per frame
@@ -39,5 +40,10 @@ public class Rika : MonoBehaviour
             soundManager.instance.PlaySoundAtPosition(SoundType.MONSTER_ATK, transform.position, 0.1f);
         }
       
+    }
+
+    private void Scream()
+    {
+        soundManager.instance.PlaySoundAtPosition(SoundType.MONSTER_SCREAM, transform.position, 0.25f);
     }
 }

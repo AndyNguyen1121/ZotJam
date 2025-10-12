@@ -39,8 +39,11 @@ public class AreaManager : MonoBehaviour
         PlayerManager.instance.characterController.enabled = false;
         PlayerManager.instance.playerMovementManager.lastMoveVelocity = Vector3.zero;
 
-        enemySpawner.Instance.KillAllEnemies();
-        enemySpawner.Instance.NextWave();
+        if (enemySpawner.Instance != null)
+        {
+            enemySpawner.Instance.KillAllEnemies();
+            enemySpawner.Instance.NextWave();
+        }
 
         if (location == PlayerLocation.Overworld)
         {

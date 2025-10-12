@@ -80,7 +80,7 @@ public class PlayerCombatManager : MonoBehaviour
             PlayerManager.instance.whatIsDamageable))
         {
             endPos = hit.point;
-
+            soundManager.instance.PlaySoundAtPosition(SoundType.HIT_FX, hit.point, 0.5f);
             IDamageable damageScript = hit.collider.gameObject.GetComponent<IDamageable>();
             if (damageScript != null)
             {
@@ -110,6 +110,7 @@ public class PlayerCombatManager : MonoBehaviour
             {
                 Collider[] enemyExplosion = Physics.OverlapSphere(hit.point, explosionRadius, PlayerManager.instance.whatIsDamageable);
                 Instantiate(explosionParticle, hit.point, Quaternion.identity);
+                soundManager.instance.PlaySoundAtPosition(SoundType.EXPLOSION, hit.point, 0.5f);
                 foreach (Collider collider in enemyExplosion)
                 {
                     IDamageable damage = collider.gameObject.GetComponent<IDamageable>();

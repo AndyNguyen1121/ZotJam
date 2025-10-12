@@ -45,14 +45,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemySpawner
   defaultEnemy: {fileID: 6791504159427037280, guid: f48d61e1b8f6174438c04a49768bba2a, type: 3}
+  enemyOptions:
+  - enemy: {fileID: 6791504159427037280, guid: f48d61e1b8f6174438c04a49768bba2a, type: 3}
+    weight: 5
+    difficulty: 1
+  - enemy: {fileID: 6791504159427037280, guid: 72ed91cd070ae4164947de134a5f3a6e, type: 3}
+    weight: 2
+    difficulty: 5
+  - enemy: {fileID: 6791504159427037280, guid: 8b5a83b80af49406db77cff17d326b8a, type: 3}
+    weight: 1
+    difficulty: 7
+  - enemy: {fileID: 6791504159427037280, guid: 13efeb8832ab04fcfa34ba2fd7190943, type: 3}
+    weight: 1
+    difficulty: 8
+  - enemy: {fileID: 6791504159427037280, guid: b330f791ad4bd4c3689e39d1bd0d3531, type: 3}
+    weight: 3
+    difficulty: 1
   player: {fileID: 0}
   minRadius: 20
   maxRadius: 50
   spawnInterval: 5
   rampUpTime: 60
   intervalMin: 0.5
-  waveCounter: 1
+  waveCounter: 0
   enemiesToSpawn: 0
   isWaveClear: 1
   startWave: 1
   isSecondStage: 0
+  enemiesAlive: 0
+  itemSelect: {fileID: 0}

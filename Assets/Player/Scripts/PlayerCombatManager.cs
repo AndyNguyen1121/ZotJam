@@ -94,7 +94,7 @@ public class PlayerCombatManager : MonoBehaviour
                     {
                         damage.TakeDamage(PlayerManager.instance.damage * 1.5f);
 
-                        DebugDrawSphere(hit.point, explosionRadius, Color.green, 2f);
+                        //DebugDrawSphere(hit.point, explosionRadius, Color.green, 2f);
                     }
                 }
             }
@@ -146,7 +146,7 @@ public class PlayerCombatManager : MonoBehaviour
 
     }
 
-    void DebugDrawSphere(Vector3 center, float radius, Color color, float duration = 0f, int segments = 16)
+    /*void DebugDrawSphere(Vector3 center, float radius, Color color, float duration = 0f, int segments = 16)
     {
         for (int i = 0; i < segments; i++)
         {
@@ -166,5 +166,5 @@ public class PlayerCombatManager : MonoBehaviour
             p2 = center + new Vector3(0, Mathf.Cos(theta2) * radius, Mathf.Sin(theta2) * radius);
             Debug.DrawLine(p1, p2, color, duration);
         }
-    }
+    }*/
 }

@@ -23,7 +23,7 @@ public class Rika : MonoBehaviour
             attackTimer -= Time.deltaTime;
 
         }
-        else if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= agent.stoppingDistance)
+        else if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= (agent.stoppingDistance *agent.stoppingDistance))
         {
             animator.SetTrigger("Attack");
             attackTimer = attackInterval;
@@ -33,7 +33,7 @@ public class Rika : MonoBehaviour
     
     public void Attack()
     {
-        if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= agent.stoppingDistance)
+        if ((transform.position - PlayerManager.instance.transform.position).sqrMagnitude <= (agent.stoppingDistance *agent.stoppingDistance))
         {
             PlayerManager.instance.TakeDamage(damage);
         }

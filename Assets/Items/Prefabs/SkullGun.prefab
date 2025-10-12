@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7377b8cdb8bf74560a8c8db238f3dfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponEquip
-  icon: {fileID: 21300000, guid: 8ab783322115e49da982daea4e22b5d8, type: 3}
+  icon: {fileID: 21300000, guid: 5a6f4718bd9204fc383ac63dfc51d1d0, type: 3}
   name: Skull Gun
   description: Shoots with the hatred of the undead.
   prefab: {fileID: 1759942010527400949, guid: c79288a05d4b7da4b9533fab316e8bae, type: 3}

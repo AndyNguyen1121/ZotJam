@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestProfile
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProfile
   weaponBehavior: 0
-  damage: 4
+  damage: 20
   fireRate: 10
   range: 20
   spread: 1

@@ -48,6 +48,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::soundManager
   soundList:
   - {fileID: 8300000, guid: 1bf5c4c02b2c84742b549362914dcda8, type: 3}
+  - {fileID: 8300000, guid: e98c2c2076fae46c09d94b89f257e943, type: 3}
+  - {fileID: 8300000, guid: 791e101aa35be4e089a457013f219f1d, type: 3}
+  - {fileID: 8300000, guid: ac8e0800693c54e9d9c19a1a6c5f0aae, type: 3}
+  - {fileID: 8300000, guid: b36dd59c3c3344079a02fe56f9f8e748, type: 3}
+  - {fileID: 8300000, guid: 1be8f7042e89044759397ac9c59d6b19, type: 3}
+  - {fileID: 8300000, guid: e4209b8a597a14a19ba464088a0e0aa8, type: 3}
+  - {fileID: 8300000, guid: 4452c9b146a38406e9492ecf723eb281, type: 3}
+  - {fileID: 8300000, guid: efd0473f89a624af1984ed4b48b20d45, type: 3}
+  - {fileID: 8300000, guid: 5993723872cbc420aa3b70cc5adc99db, type: 3}
+  - {fileID: 8300000, guid: 4784461ab08fd4be4a2a07d23916e0db, type: 3}
+  - {fileID: 8300000, guid: 1518dafa8103b4bb892ef1ab6db6cee9, type: 3}
   soundPositionPrefab: {fileID: 0}
 --- !u!82 &8715509217685407550
 AudioSource:

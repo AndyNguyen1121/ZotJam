@@ -13,6 +13,7 @@ public class PlayerCombatManager : MonoBehaviour
     public AnimationClip autoShootClip;
     public float explosionRadius = 3f;
     public GameObject explosionParticle;
+    public GameObject bloodParticle;
 
     [SerializeField]
     private Vector3 bulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
@@ -76,6 +77,8 @@ public class PlayerCombatManager : MonoBehaviour
             IDamageable damageScript = hit.collider.gameObject.GetComponent<IDamageable>();
             if (damageScript != null)
             {
+
+                Instantiate(bloodParticle, hit.point, Quaternion.identity);
                 damageScript.TakeDamage(PlayerManager.instance.damage);
                 if(Random.Range (0,101) < PlayerManager.instance.fireChance)
                 {

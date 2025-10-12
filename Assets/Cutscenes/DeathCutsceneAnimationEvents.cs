@@ -12,5 +12,18 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
         }
     }
 
-    //public void 
+    public void EndCutscene()
+    {
+        if (PlayerManager.instance == null || AreaManager.instance == null)
+        {
+            Debug.LogError("Null reference in end cutscene animation event");
+        }
+        AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Hell);
+        PlayerManager.instance.mainCam.enabled = true;
+        PlayerManager.instance.SetHealthValue(50);
+        PlayerManager.instance.deathSequenceStarted = false;
+        
+        Destroy(gameObject);
+        
+    }
 }

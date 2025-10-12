@@ -66,6 +66,8 @@ public class PlayerCombatManager : MonoBehaviour
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
 
+        soundManager.instance.PlaySound(SoundType.GUNSHOT);
+
         Vector3 dir = GetDirection();
 
         if (Physics.Raycast(PlayerManager.instance.mainCam.transform.position,

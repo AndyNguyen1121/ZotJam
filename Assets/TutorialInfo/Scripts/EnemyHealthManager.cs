@@ -19,6 +19,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
 
     public void Ignite()
     {
+        transform.Find("Fire").GetComponent<ParticleSystem>().Play();
         StartCoroutine(Burn(4));
     }
 

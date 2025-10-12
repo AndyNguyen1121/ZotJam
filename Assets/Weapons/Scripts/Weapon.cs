@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
         PlayerManager.instance.baseRange = weaponProfile.range;
         PlayerManager.instance.canSpread = weaponProfile.spread;
         PlayerManager.instance.bulletSound = weaponProfile.shootSfx;
+        PlayerManager.instance.playerCombatManager.bulletTrail = weaponProfile.bulletTrail;
 
         // adjust actual stats
         PlayerManager.instance.damage = weaponProfile.damage * PlayerManager.instance.damageMultiplier;

@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: d4e20fdc13ecc53499c534b2cd7efbab
   - enabled: 0
@@ -23,9 +23,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Player/Scenes/EnemySpawnerTesting.unity
     guid: e3ba1a223e5e54937b16ddc2a658bd96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map Prototype.unity
     guid: 879223df77617ae4882179665543de84
+  - enabled: 1
+    path: Assets/Scenes/underworld.unity
+    guid: da295ba1f4a08904193e07e33a784fbe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

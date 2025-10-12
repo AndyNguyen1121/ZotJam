@@ -19,6 +19,7 @@ public class enemyChase : MonoBehaviour
     {
         var p = GameObject.FindWithTag("Player");
         if (p) target = p.transform;
+        repathTimer = Random.Range(0.25f, 0.75f);
     }
 
     // Update is called once per frame

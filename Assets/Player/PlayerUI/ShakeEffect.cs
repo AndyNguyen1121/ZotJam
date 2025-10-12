@@ -1,16 +1,19 @@
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShakeEffect : MonoBehaviour
 {
     public TextMeshProUGUI textMeshProUGUI;
+    public Tween tween;
     private void OnEnable()
     {
         Color targetColor = textMeshProUGUI.color;
         targetColor.a = 1;
 
         textMeshProUGUI.DOColor(targetColor, 1);
+        tween = transform.DOShakePosition(100000f, 4);
     }
 
     private void OnDisable()
@@ -19,9 +22,9 @@ public class ShakeEffect : MonoBehaviour
         targetColor.a = 0;
 
         textMeshProUGUI.DOColor(targetColor, 1);
-    }
-    private void Start()
-    {
-        transform.DOShakePosition(100000f, 4);
+
+        if (tween != null)
+            tween.Kill();
     }
 }
+

@@ -23,7 +23,7 @@ public class DeathCutsceneAnimationEvents : MonoBehaviour
         AreaManager.instance.SwitchPlayerLocation(PlayerLocation.Hell);
         PlayerManager.instance.mainCam.enabled = true;
         PlayerManager.instance.mainCam.targetTexture = PlayerManager.instance.renderTexture;
-        PlayerManager.instance.SetHealthValue(50);
+        PlayerManager.instance.SetHealthValue(PlayerManager.instance.MaxHealth);
         PlayerManager.instance.deathSequenceStarted = false;
         
         Destroy(gameObject);

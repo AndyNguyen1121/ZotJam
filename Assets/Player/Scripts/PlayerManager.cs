@@ -170,7 +170,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
             OnDeath.Invoke();
             //playerUIManager.EnableDeathMenu();
             deathSequenceStarted = true;
-            PlayRikaCutscene();
+
+            if (currentLocation == PlayerLocation.Overworld)
+                PlayRikaCutscene();
+            else
+                playerUIManager.EnableDeathMenu();
 
         }
 

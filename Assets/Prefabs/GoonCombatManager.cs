@@ -8,11 +8,13 @@ public class GoonCombatManager : MonoBehaviour
     public Animator animator;
     public GameObject bullet;
     public Transform fireBallSpawnLocation;
+    public float rotationSpeed = 10f;
 
     public bool canAttack = true;
     void Start()
     {
         animator = GetComponent<Animator>();
+        agent.updateRotation = false;
     }
 
     // Update is called once per frame
@@ -22,11 +24,18 @@ public class GoonCombatManager : MonoBehaviour
         animator.SetFloat("velocity", velocity);
 
         HandleAttack();
+
+       
+        Vector3 dir = (PlayerManager.instance.transform.position - transform.position).normalized;
+        dir.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     void HandleAttack()
     {
-        if (canAttack && Vector3.Distance(PlayerManager.instance.transform.position, transform.position) <= agent.stoppingDistance)
+        if (canAttack && ((transform.position - 
+            PlayerManager.instance.transform.position).sqrMagnitude <= (agent.stoppingDistance * agent.stoppingDistance)))
         {
             animator.CrossFade("Attack", 0.1f);
             canAttack = false;

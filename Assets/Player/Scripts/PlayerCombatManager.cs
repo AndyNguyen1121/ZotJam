@@ -86,10 +86,22 @@ public class PlayerCombatManager : MonoBehaviour
             {
 
                 Instantiate(bloodParticle, hit.point, Quaternion.identity);
-                damageScript.TakeDamage(PlayerManager.instance.damage);
-                if(Random.Range (0,101) < PlayerManager.instance.fireChance)
+                
+                if (Random.Range(0, 101) < PlayerManager.instance.fireChance)
                 {
                     damageScript.Ignite();
+                }
+                if (Random.Range(0, 101) < PlayerManager.instance.critChance)
+                {
+                    damageScript.TakeDamage(PlayerManager.instance.damage * PlayerManager.instance.critMultiplier);
+                }
+                else
+                {
+                    damageScript.TakeDamage(PlayerManager.instance.damage);
+                }
+                if (Random.Range(0, 101) < PlayerManager.instance.lifeStealChance)
+                {
+                    PlayerManager.instance.Heal(4);
                 }
             }
 

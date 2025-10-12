@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8774730421023406672}
-  - component: {fileID: 701540334211412894}
+  - component: {fileID: 5984733166972713829}
   m_Layer: 0
-  m_Name: Aspect of Terror
+  m_Name: Big Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &701540334211412894
+--- !u!114 &5984733166972713829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6008466383041232042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17434bf6d25df43a59a89d12d59c40fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e0941efb4aad4021b3f413201430c3e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AspectOfTerror
-  icon: {fileID: 21300000, guid: 1cd9e0562b3c141b0b4763916586786e, type: 3}
-  name: Aspect Of Terror
-  description: +3% chance of exploding bullets
+  m_EditorClassIdentifier: Assembly-CSharp::BigBullets
+  icon: {fileID: 21300000, guid: 26f7492e3942048148b644ea9a444bb9, type: 3}
+  name: Big Bullets
+  description: Increase Damage by 10%

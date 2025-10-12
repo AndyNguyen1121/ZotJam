@@ -385,6 +385,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item Selection
       objectReference: {fileID: 0}
+    - target: {fileID: 4673259911470246959, guid: 9e106d48cb6f24e50b2ffac3806f5a97, type: 3}
+      propertyPath: possibleItems.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673259911470246959, guid: 9e106d48cb6f24e50b2ffac3806f5a97, type: 3}
+      propertyPath: 'possibleItems.Array.data[5]'
+      value: 
+      objectReference: {fileID: -7800085855091493452, guid: 104534773ca8947f3a926d546a9be763, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -5,6 +5,11 @@ public class ProjectileManager : MonoBehaviour
     public float damage = 7f;
     public float speed = 3f;
     public Rigidbody rb;
+
+    private void Start()
+    {
+        Destroy(gameObject, 10f);
+    }
     private void FixedUpdate()
     {
         rb.MovePosition(transform.position + (transform.forward * speed * Time.fixedDeltaTime));
@@ -17,6 +22,7 @@ public class ProjectileManager : MonoBehaviour
             if (damageScript != null)
             {
                 damageScript.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }

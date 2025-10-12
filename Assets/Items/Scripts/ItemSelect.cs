@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class ItemSelect : MonoBehaviour
 {
     Item[] choices = new Item[2];
-    public Item[] possibleItems;
-
+    public Item[] possibleOverworldItems;
+    public Item[] possibleHellItems;
     public Transform[] choice_buttons;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +15,7 @@ public class ItemSelect : MonoBehaviour
     }
     void OnEnable()
     {
+        Item[] possibleItems = (PlayerManager.instance.currentLocation == PlayerLocation.Overworld) ? possibleOverworldItems : possibleHellItems;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         // Yes I know this is terribly programmed

@@ -16,7 +16,7 @@ public class ItemSelect : MonoBehaviour
     void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
-
+        Cursor.visible = true;
         // Yes I know this is terribly programmed
         choices[0] = possibleItems[Random.Range(0, possibleItems.Length)];
         choices[1] = possibleItems[Random.Range(0, possibleItems.Length)];
@@ -34,7 +34,9 @@ public class ItemSelect : MonoBehaviour
     {
         ItemManager.instance.AddItem(choices[n].gameObject);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         gameObject.active = false;
+        enemySpawner.Instance.startWave = true;
     }
    
 }

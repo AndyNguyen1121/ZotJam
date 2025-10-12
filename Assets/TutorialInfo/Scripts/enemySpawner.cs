@@ -22,13 +22,14 @@ public class enemySpawner : MonoBehaviour
     public float rampUpTime = 60f; // Time in seconds to reach max spawn rate
     public float intervalMin = 0.5f;
 
-    public int waveCounter = 1;
+    public int waveCounter = 0;
     public int enemiesToSpawn = 0;
     public bool isWaveClear = true;
     public bool startWave = true;
     public bool isSecondStage = false;
     public int enemiesAlive = 0;
 
+    public GameObject itemSelect;
     float timer, secondStageSpawnTimer;
 
     
@@ -46,7 +47,7 @@ public class enemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secondStageSpawnTimer += Time.deltaTime;
+        // secondStageSpawnTimer += Time.deltaTime;
 
         if (player == null) return;
 
@@ -57,66 +58,77 @@ public class enemySpawner : MonoBehaviour
             isWaveClear = false;
             if (startWave)
             {
-                enemiesToSpawn = Mathf.CeilToInt(Mathf.Exp((waveCounter / 10f) - 1) + 10); //calculates number of enemies to spawn this wave, exponential growth
+                waveCounter++;
+                enemiesToSpawn = Mathf.CeilToInt(10f* Mathf.Pow(1.2f,(float)waveCounter)); //calculates number of enemies to spawn this wave, exponential growth
                 enemiesAlive = enemiesToSpawn;
                 startWave = false;
                 Debug.LogError("Enemies to spawn: " + enemiesToSpawn);
-            }
-
-
-            // 1st stage of wave
-            for (int i = 0; i < 5; i++)
-            {
-                SpawnOne();
-                enemiesToSpawn--;
-                Debug.LogError("1st stage i: " + i);
-            }
-
-            if (enemiesToSpawn > 0)
-            {
-                isSecondStage = true;
-                secondStageSpawnTimer = 0f;
-            }
-
-            // 2nd stage of wave
-
-            if (enemiesToSpawn == 0)
-            {
-
-                //startWave = true;
-            }
-        }
-
-        if (isSecondStage && enemiesToSpawn >= 0)
-        {
-            Debug.LogError(enemiesToSpawn);
-                
-                float timeBetweenSpawn = Random.Range(3f, 11f); // min is inclusive, max is exclusive
-
-                if (secondStageSpawnTimer > timeBetweenSpawn)
-            {   
-                    // issue when SecondStage needs to run again. 
-                    // Ex. on the first wave there are 11 total enemies. 5 spawn in the first stage, leaving 6 for the second stage.
-                    // The second stage spawns less than 6 enemies and require another iteration of the second stage. 
-                    // However, the second stage will spawn an extra enemy, so 12 total instead of 11.
-                    
-                    secondStageSpawnTimer = 0f;
-                    int amountToSpawn = Random.Range(3, 11);
-                    if (amountToSpawn > enemiesToSpawn)
-                    {
-                        amountToSpawn = enemiesToSpawn;
-                    }
-                    
-                    for (int j = 0; j < amountToSpawn; j++) // spawn a group of enemies
-                    {
-                        SpawnOne();
-                        enemiesToSpawn--;
-                        Debug.LogError("2nd stage amountToSpawn j: " + j);
-                    }
-
+                for (int i = 0; i < enemiesToSpawn; i++)
+                {
+                    SpawnOne();
+                    // enemiesToSpawn--;
+                    // Debug.LogError("1st stage i: " + i);
                 }
 
             }
+
+
+
+            // 1st stage of wave
+
+            // if (enemiesToSpawn > 0)
+            // {
+            //     isSecondStage = true;
+            //     secondStageSpawnTimer = 0f;
+            // }
+
+            // 2nd stage of wave
+
+            // if (enemiesToSpawn == 0)
+            // {
+
+            //     //startWave = true;
+            // }
+        }
+        if (enemiesAlive <= 0 && !isWaveClear)
+        {
+            isWaveClear = true;
+            if (!itemSelect.activeSelf)
+            {
+                itemSelect.SetActive(true);
+            }
+        }
+
+        // if (isSecondStage && enemiesToSpawn >= 0)
+        // {
+        //     Debug.LogError(enemiesToSpawn);
+                
+        //         float timeBetweenSpawn = Random.Range(3f, 11f); // min is inclusive, max is exclusive
+
+        //         if (secondStageSpawnTimer > timeBetweenSpawn)
+        //     {   
+        //             // issue when SecondStage needs to run again. 
+        //             // Ex. on the first wave there are 11 total enemies. 5 spawn in the first stage, leaving 6 for the second stage.
+        //             // The second stage spawns less than 6 enemies and require another iteration of the second stage. 
+        //             // However, the second stage will spawn an extra enemy, so 12 total instead of 11.
+                    
+        //             secondStageSpawnTimer = 0f;
+        //             int amountToSpawn = Random.Range(3, 11);
+        //             if (amountToSpawn > enemiesToSpawn)
+        //             {
+        //                 amountToSpawn = enemiesToSpawn;
+        //             }
+                    
+        //             for (int j = 0; j < amountToSpawn; j++) // spawn a group of enemies
+        //             {
+        //                 SpawnOne();
+        //                 enemiesToSpawn--;
+        //                 Debug.LogError("2nd stage amountToSpawn j: " + j);
+        //             }
+
+        //         }
+
+        //     }
 
         // timer based spawner
         /*

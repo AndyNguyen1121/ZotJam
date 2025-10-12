@@ -11,4 +11,8 @@ public interface IDamageable
     public void TakeDamage(float value);
     public void Heal(float value);
     public void SetHealthValue(float value);
+    public void Ignite();
+    
+
+    
 }

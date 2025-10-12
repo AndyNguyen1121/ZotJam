@@ -16,6 +16,19 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     {
         Health = MaxHealth;
     }
+
+    public void Ignite()
+    {
+        StartCoroutine(Burn(4));
+    }
+
+    IEnumerator Burn(float amount)
+    {
+    
+        TakeDamage(amount);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Burn(amount));
+    }
     public void TakeDamage(float value)
     {
         Health = Mathf.Max(Health - value, 0);

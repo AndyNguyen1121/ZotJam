@@ -111,7 +111,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public bool deathSequenceStarted;
 
     
-
+    public void Ignite()
+    {
+        
+    }
     private void Awake()
     {
         if (instance == null)

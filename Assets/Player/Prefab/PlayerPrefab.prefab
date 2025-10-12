@@ -2502,6 +2502,9 @@ MonoBehaviour:
   weaponBehavior: 0
   fireChance: 0
   explosionChance: 0
+  critChance: 0
+  critMultiplier: 2
+  lifeStealChance: 0
   jumpHeight: 2
   maxMovementSpeed: 10
   damage: 0
@@ -3103,8 +3106,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -415.28412, y: -302.8}
-  m_SizeDelta: {x: 315.3701, y: 17.4541}
+  m_AnchoredPosition: {x: -415.10147, y: -302.9826}
+  m_SizeDelta: {x: 321.5789, y: 26.5845}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3190623839731474811
 CanvasRenderer:

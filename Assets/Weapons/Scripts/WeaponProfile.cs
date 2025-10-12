@@ -14,5 +14,6 @@ public class WeaponProfile : ScriptableObject
     public float fireRate;
     public float range;
     public bool spread;
+    public SoundType shootSfx;
     
 }

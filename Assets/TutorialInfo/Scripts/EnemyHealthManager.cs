@@ -25,6 +25,10 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
             OnDeath.Invoke();
             deathSequenceStarted = true;
             Destroy(gameObject);
+
+            //keeps track of how many enemies are alive
+            if (enemySpawner.Instance != null)
+            enemySpawner.Instance.enemiesAlive--;
         }
     }
 

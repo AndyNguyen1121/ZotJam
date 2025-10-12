@@ -1426,7 +1426,7 @@ Transform:
   m_GameObject: {fileID: 5313213071479903081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.03368, y: 5.6526303, z: -111.53713}
+  m_LocalPosition: {x: 0, y: 0.2800002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2209,7 +2209,7 @@ Transform:
   m_GameObject: {fileID: 7111641065419309590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.28000003, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2800002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2525,8 +2525,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   screenShake: {fileID: 615848961622706347}
-  testWeapon: {fileID: 6792628957499176433, guid: 77f352ca34b2d5844bc1d12f031939c0, type: 3}
-  testWeapon2: {fileID: 1759942010527400949, guid: c79288a05d4b7da4b9533fab316e8bae, type: 3}
+  testWeapon: {fileID: 2078034947190057225, guid: 0cb3613d4763ffe4db58d204d3f776cb, type: 3}
+  testWeapon2: {fileID: 3033799472534264946, guid: 8f369bb2844e1454caba0564005a9201, type: 3}
   _volume: {fileID: 1783619168525022691}
   _vignette: {fileID: 0}
   hellColor: {r: 0.19215687, g: 0, b: 0, a: 1}

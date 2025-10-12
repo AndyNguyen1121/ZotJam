@@ -49,7 +49,7 @@ public class enemySpawner : MonoBehaviour
     {
         if (player == null)
         {
-            var p = GameObject.FindWithTag("Player");
+            var p = PlayerManager.instance.gameObject;
             if (p) player = p.transform;
         }
     }

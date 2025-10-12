@@ -13,6 +13,7 @@ public class PlayerCombatManager : MonoBehaviour
     public AnimationClip autoShootClip;
     public float explosionRadius = 3f;
     public GameObject explosionParticle;
+    public GameObject bloodParticle;
 
     [SerializeField]
     private Vector3 bulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
@@ -48,11 +49,13 @@ public class PlayerCombatManager : MonoBehaviour
     {
         if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Single && Time.time >= nextFireTime)
         {
+            gunAnimator.speed = singleShootClip.length * PlayerManager.instance.fireRate;
             gunAnimator.Play("SingleShoot", 0, 0);
             nextFireTime = Time.time + 1f / PlayerManager.instance.fireRate;
         }
         else if (PlayerManager.instance.weaponBehavior == WeaponBehavior.Auto)
         {
+            gunAnimator.speed = autoShootClip.length * PlayerManager.instance.fireRate;
             gunAnimator.Play("AutoShoot", 0, 0);
         }
     }
@@ -76,6 +79,8 @@ public class PlayerCombatManager : MonoBehaviour
             IDamageable damageScript = hit.collider.gameObject.GetComponent<IDamageable>();
             if (damageScript != null)
             {
+
+                Instantiate(bloodParticle, hit.point, Quaternion.identity);
                 damageScript.TakeDamage(PlayerManager.instance.damage);
                 if(Random.Range (0,101) < PlayerManager.instance.fireChance)
                 {

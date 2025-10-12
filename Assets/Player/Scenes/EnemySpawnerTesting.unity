@@ -1384,6 +1384,34 @@ PrefabInstance:
       propertyPath: waveCounter
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 6791504159427037280, guid: f48d61e1b8f6174438c04a49768bba2a, type: 3}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 6791504159427037280, guid: 1e2b4d917bf5c444b8252d09954679ca, type: 3}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[0].weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[0].difficulty
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345642127695159864, guid: 54cecd1e49aa08b489655f1a6709ba3a, type: 3}
+      propertyPath: enemyOptions.Array.data[1].difficulty
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

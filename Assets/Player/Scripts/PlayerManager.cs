@@ -133,6 +133,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         playerUIManager = GetComponent<PlayerUIManager>();
         playerMovementManager = GetComponent<PlayerMovementManager>();
         Health = MaxHealth;
+        _volume.profile.TryGet(out _vignette);
     }
 
     private void Start()
@@ -140,7 +141,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         mainCam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        _volume.profile.TryGet(out _vignette);
+        
         EquipWeapon(testWeapon);
 
         renderTexture = mainCam.targetTexture;

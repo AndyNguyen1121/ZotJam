@@ -73,6 +73,8 @@ public class AreaManager : MonoBehaviour
             PlayerManager.instance._vignette.color.value = PlayerManager.instance.hellColor;
         }
 
+        Debug.Log("enabled");
+
         PlayerManager.instance.characterController.enabled = true;
 
         

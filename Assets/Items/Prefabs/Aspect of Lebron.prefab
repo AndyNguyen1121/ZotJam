@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AspectOfLebron
   icon: {fileID: 21300000, guid: f051b4e6b3a5b4b48aaad5f099e20b56, type: 3}
   name: Aspect of Lebron
-  description: Increase Jump Height by 50%
+  description: Increase Jump Height by 10%

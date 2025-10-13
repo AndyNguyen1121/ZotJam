@@ -4,9 +4,11 @@ public class WaveCounter : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public TMP_Text myTMPText;
-    void Start()
+
+    public static WaveCounter instance;
+    private void Awake()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame

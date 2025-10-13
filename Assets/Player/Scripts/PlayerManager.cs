@@ -160,17 +160,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private void Update()
     {
         GroundCheck();
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            EquipWeapon(testWeapon);
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            EquipWeapon(testWeapon2);
-            TakeDamage(10);
-        }
-
     }
 
     public void GroundCheck()

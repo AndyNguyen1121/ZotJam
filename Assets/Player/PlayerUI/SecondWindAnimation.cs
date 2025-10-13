@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SecondWindAnimation : MonoBehaviour
 {
-    public GameObject second;
-    public GameObject wind;
-    public GameObject secondWind;
+    public GameObject welcome;
+    public GameObject to;
+    public GameObject hell;
+    public GameObject welcomeToHell;
 
     private Coroutine secondWindCoroutine;
 
@@ -22,25 +23,37 @@ public class SecondWindAnimation : MonoBehaviour
     public IEnumerator AnimateText()
     {
         yield return new WaitForSeconds(0.25f);
-        second.SetActive(true);
-        wind.SetActive(false);
-        secondWind.SetActive(false);
+        welcome.SetActive(true);
+        to.SetActive(false);
+        hell.SetActive(false);
+        welcomeToHell.SetActive(false);
         PlayerManager.instance.screenShake.GenerateImpulseAt(PlayerManager.instance.transform.position,
             new Vector3(1.5f, 1.5f, 1.5f));
 
         yield return new WaitForSeconds(0.75f);
 
-        second.SetActive(false);
-        wind.SetActive(true);
-        secondWind.SetActive(false);
+        welcome.SetActive(false);
+        to.SetActive(true);
+        hell.SetActive(false);
+        welcomeToHell.SetActive(false);
         PlayerManager.instance.screenShake.GenerateImpulseAt(PlayerManager.instance.transform.position,
             new Vector3(1.5f, 1.5f, 1.5f));
 
         yield return new WaitForSeconds(0.75f);
 
-        second.SetActive(false);
-        wind.SetActive(false);
-        secondWind.SetActive(true);
+        welcome.SetActive(false);
+        to.SetActive(false);
+        hell.SetActive(true);
+        welcomeToHell.SetActive(false);
+        PlayerManager.instance.screenShake.GenerateImpulseAt(PlayerManager.instance.transform.position,
+            new Vector3(2, 2, 2));
+
+        yield return new WaitForSeconds(0.75f);
+
+        welcome.SetActive(false);
+        to.SetActive(false);
+        hell.SetActive(false);
+        welcomeToHell.SetActive(true);
         PlayerManager.instance.screenShake.GenerateImpulseAt(PlayerManager.instance.transform.position,
             new Vector3(2, 2, 2));
 

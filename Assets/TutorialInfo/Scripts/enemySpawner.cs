@@ -27,6 +27,7 @@ public class enemySpawner : MonoBehaviour
 
     public GameObject defaultEnemy;
     public SpawnCard[] enemyOptions;
+    public SpawnCard[] enemyOptionsHell;
     public Transform player;
     public float minRadius = 20f;
     public float maxRadius = 50f;
@@ -74,7 +75,7 @@ public class enemySpawner : MonoBehaviour
             {
                 waveCounter++;
                 List<SpawnCard> deck = new List<SpawnCard>();
-                foreach (SpawnCard enemy in enemyOptions)
+                foreach (SpawnCard enemy in (PlayerManager.instance.currentLocation == PlayerLocation.Overworld)? enemyOptions : enemyOptionsHell) 
                 {
                     for (int i = 0; i < enemy.weight; i++)
                     {

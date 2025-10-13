@@ -27,6 +27,7 @@ public class enemySpawner : MonoBehaviour
 
     public GameObject defaultEnemy;
     public SpawnCard[] enemyOptions;
+    public SpawnCard[] enemyOptionsHell;
     public Transform player;
     public float minRadius = 20f;
     public float maxRadius = 50f;
@@ -72,9 +73,10 @@ public class enemySpawner : MonoBehaviour
             isWaveClear = false;
             if (startWave)
             {
+                bool overworld = (PlayerManager.instance.currentLocation == PlayerLocation.Overworld);
                 waveCounter++;
                 List<SpawnCard> deck = new List<SpawnCard>();
-                foreach (SpawnCard enemy in enemyOptions)
+                foreach (SpawnCard enemy in overworld? enemyOptions : enemyOptionsHell) 
                 {
                     for (int i = 0; i < enemy.weight; i++)
                     {
@@ -82,8 +84,8 @@ public class enemySpawner : MonoBehaviour
                     }
                 }
 
-
-                float difficulty = Mathf.CeilToInt(10f * Mathf.Pow(1.2f, (float)waveCounter)); //calculates number of enemies to spawn this wave, exponential growth
+                
+                float difficulty = Mathf.CeilToInt((overworld? 10f: 12.5f) * Mathf.Pow(1.1f, (float)waveCounter)); //calculates number of enemies to spawn this wave, exponential growth
 
                 startWave = false;
 

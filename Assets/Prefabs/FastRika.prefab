@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7436ca8237f4c9985d44fb140df8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rika
-  damage: 1
+  damage: 2
   animator: {fileID: 430141676106287653}
   agent: {fileID: 5275862400619825420}
   attackInterval: 0.5

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 public class ItemSelect : MonoBehaviour
 {
     Item[] choices = new Item[2];
@@ -10,17 +11,40 @@ public class ItemSelect : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
 
+
+    }
+    IEnumerator UnlockCursor()
+    {
+        yield return new WaitForSeconds(1f);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     void OnEnable()
     {
         Item[] possibleItems = (PlayerManager.instance.currentLocation == PlayerLocation.Overworld) ? possibleOverworldItems : possibleHellItems;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        StartCoroutine(UnlockCursor());
         // Yes I know this is terribly programmed
         choices[0] = possibleItems[Random.Range(0, possibleItems.Length)];
-        choices[1] = possibleItems[Random.Range(0, possibleItems.Length)];
+        while (true)
+        {
+            choices[1] = possibleItems[Random.Range(0, possibleItems.Length)];
+            WeaponEquip weapon = choices[1].GetComponent<WeaponEquip>();
+            if (weapon == null)
+            {
+                break;
+            }
+            else if(weapon.prefab.name != PlayerManager.instance.currentWeapon.name)
+            {
+                break;
+                
+            }
+            if(choices[1] != choices[0])
+            {
+                break;
+            }
+        }
+        
         choice_buttons[0].GetChild(0).GetComponent<Image>().sprite = choices[0].icon;
         choice_buttons[0].GetChild(1).GetComponent<TMP_Text>().text = choices[0].name;
         choice_buttons[0].GetChild(2).GetComponent<TMP_Text>().text = choices[0].description;

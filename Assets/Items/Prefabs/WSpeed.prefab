@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WSpeed
   icon: {fileID: 21300000, guid: 4f8535ed2fc7941668569c313aecfef4, type: 3}
   name: W Speed
-  description: Increases movement speed 67%
+  description: Increases movement speed 5%

@@ -4,6 +4,6 @@ public class WSpeed : Item
 {
     public override void Activate()
     {
-        PlayerManager.instance.maxMovementSpeed *= 1.5f;
+        PlayerManager.instance.maxMovementSpeed *= 1.05f;
     }
 }

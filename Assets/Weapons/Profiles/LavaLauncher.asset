@@ -18,4 +18,5 @@ MonoBehaviour:
   range: 30
   spread: 1
   shootSfx: 7
-  bulletTrail: {fileID: 0}
+  bulletTrail: {fileID: 2837021974416431922, guid: e39fedd700a90e640ba454e1b294529a, type: 3}
+  volume: 0.25

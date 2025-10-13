@@ -14,6 +14,7 @@ public class PlayerCombatManager : MonoBehaviour
     public float explosionRadius = 3f;
     public GameObject explosionParticle;
     public GameObject bloodParticle;
+    public float bulletVolume;
 
     [SerializeField]
     private Vector3 bulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
@@ -69,7 +70,7 @@ public class PlayerCombatManager : MonoBehaviour
         Vector3 startPos = PlayerManager.instance.currentGunTip.transform.position;
         Vector3 endPos;
 
-        soundManager.instance.PlaySound(PlayerManager.instance.bulletSound, 0.5f);
+        soundManager.instance.PlaySound(PlayerManager.instance.bulletSound, bulletVolume);
 
         Vector3 dir = GetDirection();
 
